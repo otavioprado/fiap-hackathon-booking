@@ -1,0 +1,31 @@
+{
+	"info": {
+		"_postman_id": "731c8cfb-928a-473c-8010-8ccf80d2e677",
+		"name": "Serviços Opcionais",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2416879",
+		"_collection_link": "https://warped-meteor-302132.postman.co/workspace/FIAP---Hackaton-~94971455-a2b0-4e84-a2de-73775d91e8c4/collection/2416879-731c8cfb-928a-473c-8010-8ccf80d2e677?action=share&source=collection_link&creator=2416879"
+	},
+	"item": [
+		{
+			"name": "[GET] Listar Serviços e Opcionais",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/servicos-opcionais",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"servicos-opcionais"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
