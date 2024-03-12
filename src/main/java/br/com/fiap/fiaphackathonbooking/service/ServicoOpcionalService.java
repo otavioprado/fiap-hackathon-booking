@@ -1,5 +1,6 @@
 package br.com.fiap.fiaphackathonbooking.service;
 
+import br.com.fiap.fiaphackathonbooking.exceptions.NotFoundException;
 import br.com.fiap.fiaphackathonbooking.model.ServicoOpcional;
 import br.com.fiap.fiaphackathonbooking.repository.ServicoOpcionalRepository;
 import jakarta.transaction.Transactional;
@@ -26,7 +27,7 @@ public class ServicoOpcionalService {
     @Transactional
     public ServicoOpcional atualizar(Long id, ServicoOpcional servicoOpcionalAtualizado) {
         ServicoOpcional servicoOpcional = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Serviço/Opcional não encontrado com id: " + id));
+                .orElseThrow(() -> new NotFoundException("Serviço/Opcional não encontrado com id: " + id));
 
         servicoOpcional.setNome(servicoOpcionalAtualizado.getNome());
         servicoOpcional.setValor(servicoOpcionalAtualizado.getValor());
@@ -38,13 +39,13 @@ public class ServicoOpcionalService {
     @Transactional
     public void remover(Long id) {
         ServicoOpcional servicoOpcional = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Serviço/Opcional não encontrado com id: " + id));
+                .orElseThrow(() -> new NotFoundException("Serviço/Opcional não encontrado com id: " + id));
 
         repository.delete(servicoOpcional);
     }
 
     public ServicoOpcional buscarPorId(Long id) {
         return repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Serviço/Opcional não encontrado com id: " + id));
+                .orElseThrow(() -> new NotFoundException("Serviço/Opcional não encontrado com id: " + id));
     }
 }

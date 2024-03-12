@@ -1,7 +1,12 @@
 package br.com.fiap.fiaphackathonbooking.model;
 
 import br.com.fiap.fiaphackathonbooking.enums.TipoServico;
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.Data;
 
 @Data

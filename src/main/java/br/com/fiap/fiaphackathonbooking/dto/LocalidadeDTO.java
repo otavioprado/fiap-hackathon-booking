@@ -7,19 +7,20 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class QuartoDTO {
+public class LocalidadeDTO {
+
     @JsonIgnore // Ignorar o campo "id" na serialização no método POST
     private Long id;
-    private String tipo;
-    private int totalPessoas;
-    private int totalCamas;
-    private String outrosMoveis;
-    private double valorDiaria;
-    private Long predioId;
-
+    private String nome;
+    private String amenidades;
+    private String endereco;
+    private String cep;
+    private String numero;
+    private String complemento;
+    private String bairro;
+    private String cidade;
+    private String estado;
 
     @JsonProperty // Incluir o campo "id" na serialização no método GET
-    public Long getId() {
-        return id;
-    }
+    public Long getId() { return id; }
 }

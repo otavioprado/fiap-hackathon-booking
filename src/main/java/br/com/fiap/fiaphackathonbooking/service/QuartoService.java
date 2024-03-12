@@ -1,6 +1,7 @@
 package br.com.fiap.fiaphackathonbooking.service;
 
 import br.com.fiap.fiaphackathonbooking.dto.QuartoDTO;
+import br.com.fiap.fiaphackathonbooking.exceptions.NotFoundException;
 import br.com.fiap.fiaphackathonbooking.model.Quarto;
 import br.com.fiap.fiaphackathonbooking.repository.QuartoRepository;
 import lombok.AllArgsConstructor;
@@ -24,7 +25,7 @@ public class QuartoService {
 
     public QuartoDTO atualizarQuarto(Long id, QuartoDTO quartoDTO) {
         Quarto quarto = quartoRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Quarto não encontrado com id: " + id));
+                .orElseThrow(() -> new NotFoundException("Quarto não encontrado com id: " + id));
         modelMapper.map(quartoDTO, quarto);
         Quarto quartoAtualizado = quartoRepository.save(quarto);
         return modelMapper.map(quartoAtualizado, QuartoDTO.class);
@@ -32,7 +33,7 @@ public class QuartoService {
 
     public void deletarQuarto(Long id) {
         Quarto quarto = quartoRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Quarto não encontrado com id: " + id));
+                .orElseThrow(() -> new NotFoundException("Quarto não encontrado com id: " + id));
         quartoRepository.delete(quarto);
     }
 
@@ -45,7 +46,7 @@ public class QuartoService {
 
     public QuartoDTO buscarPorId(Long id) {
         Quarto quarto = quartoRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Quarto não encontrado com id: " + id));
+                .orElseThrow(() -> new NotFoundException("Quarto não encontrado com id: " + id));
         return modelMapper.map(quarto, QuartoDTO.class);
     }
 }

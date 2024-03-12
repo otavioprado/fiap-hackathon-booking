@@ -25,5 +25,9 @@ public class Quarto {
 
     @Column(name = "valor_diaria")
     private double valorDiaria;
+
+    @ManyToOne
+    @JoinColumn(name = "predio_id")
+    private Predio predio;
 }
 
