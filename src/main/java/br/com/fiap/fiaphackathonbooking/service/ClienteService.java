@@ -1,11 +1,8 @@
 package br.com.fiap.fiaphackathonbooking.service;
 
-
 import br.com.fiap.fiaphackathonbooking.dto.ClienteDTO;
-import br.com.fiap.fiaphackathonbooking.dto.QuartoDTO;
 import br.com.fiap.fiaphackathonbooking.exceptions.NotFoundException;
 import br.com.fiap.fiaphackathonbooking.model.Cliente;
-import br.com.fiap.fiaphackathonbooking.model.Quarto;
 import br.com.fiap.fiaphackathonbooking.repository.ClienteRepository;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
@@ -26,10 +23,11 @@ public class ClienteService {
     public ClienteDTO adicionarCliente(ClienteDTO clienteDTO) {
         Cliente cliente = modelMapper.map(clienteDTO, Cliente.class);
         clienteRepository.findByCpf(clienteDTO.getCpf())
-                .ifPresent( clienteCpf -> {throw new NotFoundException("CPF já cadastrado!: " + clienteDTO.getCpf());});
+                .ifPresent(clienteCpf -> {
+                    throw new NotFoundException("CPF já cadastrado!: " + clienteDTO.getCpf());
+                });
         Cliente novoCliente = clienteRepository.save(cliente);
         return modelMapper.map(novoCliente, ClienteDTO.class);
-
     }
 
     public ClienteDTO atualizarCliente(Long id, ClienteDTO clienteDTO) {
@@ -60,4 +58,4 @@ public class ClienteService {
         return modelMapper.map(cliente, ClienteDTO.class);
     }
 
-  }
+}
