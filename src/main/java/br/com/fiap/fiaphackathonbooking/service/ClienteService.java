@@ -25,72 +25,39 @@ public class ClienteService {
     @Transactional
     public ClienteDTO adicionarCliente(ClienteDTO clienteDTO) {
         Cliente cliente = modelMapper.map(clienteDTO, Cliente.class);
-        clienteRepository.findById(clienteDTO.getClienteId())
-                .orElseThrow(() -> new NotFoundException("Cliente não encontrado com id: " + clienteDTO.getPredioId()));
-        Quarto novoQuarto = quartoRepository.save(quarto);
-        return modelMapper.map(novoQuarto, QuartoDTO.class);
+        clienteRepository.findByCpf(clienteDTO.getCpf())
+                .ifPresent( clienteCpf -> {throw new NotFoundException("CPF já cadastrado!: " + clienteDTO.getCpf());});
+        Cliente novoCliente = clienteRepository.save(cliente);
+        return modelMapper.map(novoCliente, ClienteDTO.class);
+
     }
 
-    public QuartoDTO atualizarQuarto(Long id, QuartoDTO quartoDTO) {
-        Quarto quarto = quartoRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("Quarto não encontrado com id: " + id));
-        predioRepository.findById(quartoDTO.getPredioId())
-                .orElseThrow(() -> new NotFoundException("Prédio não encontrado com id: " + quartoDTO.getPredioId()));
-        quartoDTO.setId(id);
-        modelMapper.map(quartoDTO, quarto);
-        Quarto quartoAtualizado = quartoRepository.save(quarto);
-        return modelMapper.map(quartoAtualizado, QuartoDTO.class);
+    public ClienteDTO atualizarCliente(Long id, ClienteDTO clienteDTO) {
+        Cliente cliente = clienteRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Cliente não encontrado com id: " + id));
+        clienteDTO.setId(id);
+        modelMapper.map(clienteDTO, cliente);
+        Cliente clienteAtualizado = clienteRepository.save(cliente);
+        return modelMapper.map(clienteAtualizado, ClienteDTO.class);
     }
 
-    public void deletarQuarto(Long id) {
-        Quarto quarto = quartoRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("Quarto não encontrado com id: " + id));
-        quartoRepository.delete(quarto);
+    public void deletarCliente(Long id) {
+        Cliente cliente = clienteRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Cliente não encontrado com id: " + id));
+        clienteRepository.delete(cliente);
     }
 
-    public List<QuartoDTO> listarTodos() {
-        List<Quarto> quartos = quartoRepository.findAll();
-        return quartos.stream()
-                .map(quarto -> modelMapper.map(quarto, QuartoDTO.class))
+    public List<ClienteDTO> listarTodos() {
+        List<Cliente> clientes = clienteRepository.findAll();
+        return clientes.stream()
+                .map(cliente -> modelMapper.map(cliente, ClienteDTO.class))
                 .collect(Collectors.toList());
     }
 
-    public QuartoDTO buscarPorId(Long id) {
-        Quarto quarto = quartoRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("Quarto não encontrado com id: " + id));
-        return modelMapper.map(quarto, QuartoDTO.class);
-    }
-
-  /*  public List<Cliente> listarTodos() {
-        return repository.findAll();
-    }
-
-    @Transactional
-    public ServicoOpcional adicionar(Cliente cliente) {   return repository.save(cliente);
-    }
-
-    @Transactional
-    public Cliente atualizar(Long id, Cliente clienteAtualizado) {
-        Cliente cliente = repository.findById(id)
+    public ClienteDTO buscarPorId(Long id) {
+        Cliente cliente = clienteRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Cliente não encontrado com id: " + id));
-
-        cliente.setNomeCompleto(clienteAtualizado.getNomeCompleto());
-                return repository.save(cliente);
+        return modelMapper.map(cliente, ClienteDTO.class);
     }
 
-    @Transactional
-    public void remover(Long id) {
-        Cliente cliente = repository.findById(id)
-                .orElseThrow(() -> new NotFoundException("Cliente não encontrado com id: " + id));
-
-        repository.delete(cliente);
-    }
-
-    public Cliente buscarPorId(Long id) {
-        return repository.findById(id)
-                .orElseThrow(() -> new NotFoundException("Cliente não encontrado com id: " + id));
-    }
-
-    public ClienteDTO adicionarCliente(ClienteDTO clienteDTO) {
-    }
-}
+  }
