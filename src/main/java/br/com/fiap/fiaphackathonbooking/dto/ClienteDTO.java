@@ -5,11 +5,15 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.*;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.validator.constraints.br.CPF;
 
 import java.time.LocalDate;
-
+@Getter
+@Setter
 public class ClienteDTO {
     @JsonIgnore // Ignorar o campo "id" na serialização no método POST
     private Long id;
@@ -34,12 +38,13 @@ public class ClienteDTO {
     private String email;
 
     @NotBlank(message = "Precisa inserir número de telefone")
-    @Pattern(regexp = "\\(\\d{2}\\)\\s\\d{4}-\\d{4}", message = "Número de telefone inválido")
+   @Pattern(regexp = "\\(\\d{2}\\)\\s\\d{4}-\\d{4}", message = "Número de telefone inválido")
     private String telefone;
     @NotBlank (message = "Precisa inserir País de origem")
     private String paisDeOrigem;
     @NotBlank (message = "Precisa inserir seu endereço")
     private String endereco;
+
 
     @JsonProperty // Incluir o campo "id" na serialização no método GET
     public Long getId() {
