@@ -1,5 +1,6 @@
 package br.com.fiap.fiaphackathonbooking.model;
 
+import br.com.fiap.fiaphackathonbooking.enums.Sexo;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -16,16 +17,10 @@ public class Cliente {
     private String cpf;
     private String passaporte;
     private String paisDeOrigem;
-
-// TODO: FINALIZAR CLASSE CLIENTE
-    @Enumerated(EnumType.STRING)
-    private Sexo sexo;
+    private String endereco;
     private String email;
     private String telefone;
 
-    @OneToOne
-    private Endereco endereco;
-    private String parentesco;
-    @JsonIgnore
-    private Long usuario;}
+    @Enumerated(EnumType.STRING)
+    private Sexo sexo;
 }
