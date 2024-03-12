@@ -35,7 +35,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"nome\": \"aaa\",\n    \"tipo\": \"ITEM\",\n    \"valor\": 1\n}",
+					"raw": "{\n    \"nome\": \"Jack Sparrow\",\n    \"tipo\": \"ITEM\",\n    \"valor\": 100\n}",
 					"options": {
 						"raw": {
 							"language": "json"

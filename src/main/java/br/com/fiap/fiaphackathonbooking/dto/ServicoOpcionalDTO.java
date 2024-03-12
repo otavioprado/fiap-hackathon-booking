@@ -13,7 +13,7 @@ import lombok.Data;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ServicoOpcionalDTO {
     @JsonIgnore // Ignorar o campo "id" na serialização no método POST
-    private String id;
+    private Long id;
 
     @NotBlank(message = "O nome é obrigatório.")
     private String nome;
@@ -26,7 +26,7 @@ public class ServicoOpcionalDTO {
     private TipoServico tipo;
 
     @JsonProperty // Incluir o campo "id" na serialização no método GET
-    public String getId() {
+    public Long getId() {
         return id;
     }
 }
