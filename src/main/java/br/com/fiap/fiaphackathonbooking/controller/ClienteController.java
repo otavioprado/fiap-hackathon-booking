@@ -1,5 +1,6 @@
 package br.com.fiap.fiaphackathonbooking.controller;
 
+<<<<<<< HEAD
 
 import br.com.fiap.fiaphackathonbooking.dto.ClienteDTO;
 import br.com.fiap.fiaphackathonbooking.dto.QuartoDTO;
@@ -12,10 +13,18 @@ import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
+=======
+import br.com.fiap.fiaphackathonbooking.dto.ClienteDTO;
+import br.com.fiap.fiaphackathonbooking.model.Cliente;
+import br.com.fiap.fiaphackathonbooking.service.ClienteService;
+import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
+>>>>>>> 4ab50fcbe404bc0efc210cac05a4d80884e84573
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+<<<<<<< HEAD
 import java.util.stream.Collectors;
 
 @RestController
@@ -103,4 +112,38 @@ public class ClienteController {
     }
 
     */
+=======
+
+@RestController
+@RequestMapping("/api/clientes")
+@AllArgsConstructor
+public class ClienteController {
+    private final ClienteService clienteService;
+
+    @PostMapping
+    public ResponseEntity<ClienteDTO> cadastrarCliente(@RequestBody @Valid ClienteDTO clienteDTO){
+        return null;
+    }
+
+    @GetMapping
+    public ResponseEntity<List<ClienteDTO>>listarTodosClientes(){
+        return null;
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ClienteDTO>buscarClientePorId(@PathVariable Long id){
+        return null;
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ClienteDTO> atualizarCliente(@PathVariable Long id, @RequestBody @Valid ClienteDTO clienteDTO){
+        return null;
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> removerCliente(){
+        return null;
+    }
+
+>>>>>>> 4ab50fcbe404bc0efc210cac05a4d80884e84573
 }
