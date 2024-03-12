@@ -3,6 +3,9 @@ package br.com.fiap.fiaphackathonbooking.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Data
 public class Quarto {
@@ -29,5 +32,8 @@ public class Quarto {
     @ManyToOne
     @JoinColumn(name = "predio_id")
     private Predio predio;
+
+    @ManyToMany(mappedBy = "quartos")
+    private Set<Reserva> reservas = new HashSet<>();
 }
 

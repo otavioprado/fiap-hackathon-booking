@@ -38,6 +38,14 @@ public class Reserva {
     )
     private Set<Quarto> quartos = new HashSet<>();
 
+    @ManyToMany
+    @JoinTable(
+            name = "reserva_servico_opcional",
+            joinColumns = @JoinColumn(name = "reserva_id"),
+            inverseJoinColumns = @JoinColumn(name = "servico_opcional_id")
+    )
+    private Set<ServicoOpcional> servicosOpcionais = new HashSet<>();
+
     @Column(name = "valor_total")
     private double valorTotal;
 }

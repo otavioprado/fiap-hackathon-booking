@@ -43,3 +43,7 @@ INSERT INTO quarto (tipo, total_pessoas, total_camas, outros_moveis, valor_diari
 INSERT INTO quarto (tipo, total_pessoas, total_camas, outros_moveis, valor_diaria, predio_id) VALUES
     ('Premium Duplo', 4, 2, '1 x Sofá, 2 x Poltronas, 1 x Frigobar, 1 x TV Led 62 pols., 1 x Mesa de Escritório, 1 x Cadeira de Escritório', 950.00, 1);
 
+INSERT INTO cliente
+(nome_completo, data_nascimento, cpf, passaporte, pais_de_origem, endereco, email, telefone, sexo)
+VALUES
+    ('Jack Sparrow', '1690-01-01', '00000000000', 'P1R4T3S', 'Caribe', 'Navio Pérola Negra, Mar do Caribe', 'jack.sparrow@caribe.com', '0000-0000', 'MASCULINO');

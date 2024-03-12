@@ -38,7 +38,6 @@ public class ReservaController {
 
     @GetMapping
     public ResponseEntity<?> listarReservas() {
-        // Método para listar todas as reservas ou com filtros específicos
         return ResponseEntity.ok(reservaService.listarTodasReservas());
     }
 
@@ -48,9 +47,6 @@ public class ReservaController {
         return ResponseEntity.ok(reserva);
     }
 
-    // Aqui você pode adicionar outros endpoints conforme necessário, como verificar disponibilidade, calcular valores, etc.
-
-    // Endpoint simulado para enviar email de confirmação (exemplo simplificado)
     @PostMapping("/enviarEmail/{idReserva}")
     public ResponseEntity<String> enviarEmailConfirmacao(@PathVariable Long idReserva) {
         // Simulação do envio de email
