@@ -30,6 +30,7 @@ public class LocalidadeService {
     public LocalidadeDTO atualizarLocalidade(Long id, LocalidadeDTO localidadeDTO) {
         Localidade localidade = localidadeRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Localidade não encontrada com id: " + id));
+        localidadeDTO.setId(id);
         modelMapper.map(localidadeDTO, localidade);
         Localidade localidadeAtualizada = localidadeRepository.save(localidade);
         return modelMapper.map(localidadeAtualizada, LocalidadeDTO.class);

@@ -2,6 +2,7 @@ package br.com.fiap.fiaphackathonbooking.controller;
 
 import br.com.fiap.fiaphackathonbooking.dto.QuartoDTO;
 import br.com.fiap.fiaphackathonbooking.service.QuartoService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,13 +18,13 @@ public class QuartoController {
     private final QuartoService quartoService;
 
     @PostMapping
-    public ResponseEntity<QuartoDTO> adicionarQuarto(@RequestBody QuartoDTO quartoDTO) {
+    public ResponseEntity<QuartoDTO> adicionarQuarto(@RequestBody @Valid QuartoDTO quartoDTO) {
         QuartoDTO novoQuarto = quartoService.adicionarQuarto(quartoDTO);
         return new ResponseEntity<>(novoQuarto, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<QuartoDTO> atualizarQuarto(@PathVariable Long id, @RequestBody QuartoDTO quartoDTO) {
+    public ResponseEntity<QuartoDTO> atualizarQuarto(@PathVariable Long id, @RequestBody @Valid QuartoDTO quartoDTO) {
         QuartoDTO atualizado = quartoService.atualizarQuarto(id, quartoDTO);
         return ResponseEntity.ok(atualizado);
     }

@@ -35,6 +35,7 @@ public class PredioService {
     public PredioDTO atualizarPredio(Long id, PredioDTO predioDTO) {
         Predio predio = predioRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Predio não encontrado com id: " + id));
+        predioDTO.setId(id);
         modelMapper.map(predioDTO, predio);
         Predio predioAtualizado = predioRepository.save(predio);
         return modelMapper.map(predioAtualizado, PredioDTO.class);
