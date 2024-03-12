@@ -1,10 +1,12 @@
 package br.com.fiap.fiaphackathonbooking.mapper;
 
+import br.com.fiap.fiaphackathonbooking.dto.ClienteDTO;
 import br.com.fiap.fiaphackathonbooking.dto.ServicoOpcionalDTO;
+import br.com.fiap.fiaphackathonbooking.model.Cliente;
 import br.com.fiap.fiaphackathonbooking.model.ServicoOpcional;
 
 public interface ClienteMapper {
-    ServicoOpcionalDTO toDTO(ServicoOpcional tenant);
+    ClienteDTO toDTO(Cliente tenant);
 
-    ServicoOpcional toEntity(ServicoOpcionalDTO dto);
+    Cliente toEntity (ClienteDTO dto);
 }
