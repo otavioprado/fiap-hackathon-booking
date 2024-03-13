@@ -62,6 +62,7 @@ curl --location --request POST 'http://localhost:8080/booking/api/quartos/2/admi
 Importante: para consultar todas as opções de APIs, favor acessar a collection POSTMAN disponibilizada: 
 
 - [FIAP - Booking.postman_collection.json](src%2Fmain%2Fresources%2FFIAP%20-%20Booking.postman_collection.json)
+
 ![img.png](img.png)
 
 
@@ -81,16 +82,16 @@ Importante: para consultar todas as opções de APIs, favor acessar a collection
 
 ## Desafios
 
-Optamos por trabalhar em monolito para criação da nossa aplicação e assim ganhar tempo para desenvolver outras camadas que compõe o projeto;
 
-Optamos por atingir metade da cobertura dos testes para representar o conhecimento adquirido até o momento e seguimos para a próxima etapa do projeto; 
+Optamos por adotar uma abordagem monolítica para o desenvolvimento de nossa aplicação, visando otimizar o tempo e concentrar esforços em outras áreas do projeto.
 
-Durante o desenvolvimento do projeto encontramos alguns problemas de interpretação na regra de negócio, tais como, quais seriam os limites de desenvolvimento para este novo desafio: 
-* Iria utilizar banco de dados? R: H2
-* Qual seria a forma de fazer as simulações de requisições HTTP das API’s? R: swagger-ui / postman (criação de testes automatizados) <br>
+Decidimos alcançar uma cobertura de testes de 50% para refletir o conhecimento adquirido até o momento, permitindo-nos avançar para a próxima fase do projeto.
 
-Estes foram alguns dos levantamentos feitos pela equipe e a partir deles, começamos a estudar as melhores ferramentas para desenvolver as API’s. E como mencionado nas tecnologias e ferramentas utilizadas focamos nelas em específicos durante o projeto.
-A partir desse ponto, realizamos algumas reuniões de alinhamento e planejamento do que seria feito e como seria. 
+Durante o desenvolvimento, surgiram desafios relacionados à interpretação das regras de negócio, incluindo questões sobre os limites do escopo do projeto:
+
+A escolha do banco de dados: Optamos por utilizar o H2, uma solução leve e eficiente para nossas necessidades.
+Testes e simulação de requisições HTTP: Para testar nossas APIs, decidimos utilizar ferramentas como o Swagger UI e o Postman, facilitando a criação e execução de testes automatizados.
+Esses foram alguns dos aspectos considerados pela equipe durante a fase inicial do projeto. A partir dessas definições, realizamos reuniões de alinhamento para planejar e coordenar nossas ações, garantindo uma execução eficiente e coerente com nossos objetivos.
 
 ## Consultando a Documentação da API
 Acessa o arquivo swagger da aplicação pelo link: [api-docs.json](src%2Fmain%2Fresources%2Fapi-docs.json)
@@ -114,4 +115,7 @@ Basta importar esse arquivo para o seu ambiente do Postman e começar a usar as 
 
 ## Diagrama de tabelas:
 ![Imagem do WhatsApp de 2024-03-13 à(s) 15 09 19_4d8cc485](https://github.com/otavioprado/fiap-hackathon-booking/assets/133544024/ad57fc12-7514-4d5c-871e-f9534d2fc710)
+
+## Coverage dos testes:
+![img_1.png](img_1.png)
 
