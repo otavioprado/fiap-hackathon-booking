@@ -1,12 +1,8 @@
 package br.com.fiap.fiaphackathonbooking.mapper;
 
 import br.com.fiap.fiaphackathonbooking.dto.ClienteDTO;
-import br.com.fiap.fiaphackathonbooking.dto.ServicoOpcionalDTO;
 import br.com.fiap.fiaphackathonbooking.enums.Sexo;
-import br.com.fiap.fiaphackathonbooking.enums.TipoServico;
 import br.com.fiap.fiaphackathonbooking.model.Cliente;
-import br.com.fiap.fiaphackathonbooking.model.ServicoOpcional;
-import jakarta.validation.constraints.Past;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -17,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
 
-public class ClienteUnitTest {
+public class ClienteMapperUnitTest {
     @Mock
     private ClienteMapper mapper;
 
