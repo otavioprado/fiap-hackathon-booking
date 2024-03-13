@@ -19,10 +19,17 @@ public class ReservaDTO {
     private LocalDate dataSaida;
     private List<Long> quartosIds;
     private List<String> servicosOpcionais;
+
+    @JsonIgnore // Ignorar o campo "id" na serialização no método POST
     private double valorTotal;
 
     @JsonProperty // Incluir o campo "id" na serialização no método GET
     public Long getId() {
         return id;
+    }
+
+    @JsonProperty // Incluir o campo "valorTotal" na serialização no método GET
+    public double getValorTotal() {
+        return valorTotal;
     }
 }
