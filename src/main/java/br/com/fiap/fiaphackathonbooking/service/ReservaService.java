@@ -44,6 +44,7 @@ public class ReservaService {
         ServicoOpcional servicoOpcional = servicoOpcionalRepository.findById(idItem)
                 .orElseThrow(() -> new NotFoundException("ServiçoOpcional não encontrado com o ID: " + idItem));
         reserva.getServicosOpcionais().add(servicoOpcional);
+        calcularValorTotalReserva(reserva); // Recalcular o valor total da reserva
         reservaRepository.save(reserva);
     }
 
@@ -58,6 +59,7 @@ public class ReservaService {
         ServicoOpcional servicoOpcional = servicoOpcionalRepository.findById(idItem)
                 .orElseThrow(() -> new NotFoundException("ServiçoOpcional não encontrado com o ID: " + idItem));
         reserva.getServicosOpcionais().remove(servicoOpcional);
+        calcularValorTotalReserva(reserva); // Recalcular o valor total da reserva
         reservaRepository.save(reserva);
     }
 
@@ -129,12 +131,6 @@ public class ReservaService {
         Reserva reserva = reservaMapper.reservaDTOToReserva(reservaDTO);
         reserva.setQuartos(quartos); // Associa os quartos à reserva
 
-        // Calcular o número de dias entre a data de entrada e a data de saída
-        long dias = ChronoUnit.DAYS.between(reservaDTO.getDataEntrada(), reservaDTO.getDataSaida());
-
-        // Calcular o valor total dos quartos
-        double valorTotalQuartos = quartos.stream().mapToDouble(quarto -> quarto.getValorDiaria() * dias).sum();
-
         // Buscar e associar Serviços Opcionais
         if (reservaDTO.getServicosOpcionais() != null && !reservaDTO.getServicosOpcionais().isEmpty()) {
             List<ServicoOpcional> servicosOpcionais = new ArrayList<>();
@@ -146,13 +142,9 @@ public class ReservaService {
                 servicosOpcionais.addAll(servicosEncontrados);
             }
             reserva.setServicosOpcionais(new HashSet<>(servicosOpcionais));
-
-            // Somar os valores dos serviços opcionais ao valor total
-            double valorTotalServicos = servicosOpcionais.stream().mapToDouble(ServicoOpcional::getValor).sum();
-            reserva.setValorTotal(valorTotalQuartos + valorTotalServicos);
-        } else {
-            reserva.setValorTotal(valorTotalQuartos);
         }
+
+        calcularValorTotalReserva(reserva); // Calcular o valor total da reserva
 
         reserva.setCliente(clientById.get());
 
@@ -174,6 +166,25 @@ public class ReservaService {
         }
 
         return reservaMapper.reservaToReservaDTO(novaReserva);
+    }
+
+
+    // Método para calcular o valor total da reserva
+    private void calcularValorTotalReserva(Reserva reserva) {
+        long dias = ChronoUnit.DAYS.between(reserva.getDataEntrada(), reserva.getDataSaida());
+
+        Set<Quarto> quartos = reserva.getQuartos();
+        if(quartos == null || quartos.isEmpty()) {
+            quartos = quartoRepository.findAllByReservaId(reserva.getId());
+        }
+
+        double valorTotalQuartos = quartos.stream()
+                .mapToDouble(quarto -> quarto.getValorDiaria() * dias)
+                .sum();
+        double valorTotalServicos = reserva.getServicosOpcionais().stream()
+                .mapToDouble(ServicoOpcional::getValor)
+                .sum();
+            reserva.setValorTotal(valorTotalQuartos + valorTotalServicos);
     }
 
     public ReservaDTO atualizarReserva(Long id, ReservaDTO reservaDTO) {

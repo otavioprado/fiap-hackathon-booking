@@ -1,9 +1,10 @@
 {
 	"info": {
-		"_postman_id": "1c868154-6d27-4e9c-9b03-426cc239c302",
+		"_postman_id": "a73b1fb0-3880-4433-ba9c-09cfd49d7aa5",
 		"name": "FIAP - Booking",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "30130717"
+		"_exporter_id": "2416879",
+		"_collection_link": "https://warped-meteor-302132.postman.co/workspace/FIAP---Hackaton~94971455-a2b0-4e84-a2de-73775d91e8c4/collection/2416879-a73b1fb0-3880-4433-ba9c-09cfd49d7aa5?action=share&source=collection_link&creator=2416879"
 	},
 	"item": [
 		{
@@ -543,6 +544,28 @@
 					"response": []
 				},
 				{
+					"name": "[GET] Consultar Reserva por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/booking/api/reservas/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"booking",
+								"api",
+								"reservas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "[POST] Cadastrar Reserva",
 					"request": {
 						"method": "POST",
@@ -554,7 +577,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"clienteId\": 1,\n  \"dataEntrada\": \"2023-05-01\",\n  \"dataSaida\": \"2023-05-05\",\n  \"quartosIds\": [1, 2],\n  \"servicosOpcionais\": [\"Jantar\",\"Café da manhã\"],\n  \"valorTotal\": 1500.00\n}"
+							"raw": "{\n  \"clienteId\": 1,\n  \"dataEntrada\": \"2023-05-01\",\n  \"dataSaida\": \"2023-05-05\",\n  \"quartosIds\": [1, 2],\n  \"servicosOpcionais\": [\"Jantar\",\"Café da manhã\"]\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8080/booking/api/reservas",
@@ -611,7 +634,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/booking/api/reservas/2/adicionar-item/9",
+							"raw": "http://localhost:8080/booking/api/reservas/1/adicionar-item/9",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -621,7 +644,7 @@
 								"booking",
 								"api",
 								"reservas",
-								"2",
+								"1",
 								"adicionar-item",
 								"9"
 							]
@@ -630,7 +653,7 @@
 					"response": []
 				},
 				{
-					"name": "[POST] Remover Item na Reserv",
+					"name": "[POST] Remover Item na Reserva",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -760,7 +783,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/booking/api/reservas/1",
+							"raw": "http://localhost:8080/booking/api/reservas/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -770,7 +793,7 @@
 								"booking",
 								"api",
 								"reservas",
-								"1"
+								"2"
 							]
 						}
 					},
