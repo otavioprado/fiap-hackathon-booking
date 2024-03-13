@@ -1,25 +1,17 @@
 # HACKATHON FIAP - BOOKING
 
-Fala pessoal, esse é um sistema de hospitalidade, em outras palavras é um sistema de gerenciamento de reservas para hotéis, nele será possível agendar, buscar a melhor solução
-custo-benefício para o cliente e já pré-agendar com o serviços e opcionais.
+Este projeto é um sistema de gestão de hospitalidade, especificamente um sistema de reservas para hotéis. Ele permite aos usuários agendar, buscar a melhor solução custo-benefício e pré-reservar serviços e opções.
 
 ## Features
 
-  👤API Clientes, 📒API Localidade, 🏨 API Prédio, 😴 API Quarto, 📅 API Reserva e 🍴 API Serviço Opcional<br>
-* GET : filtro por atributos;
-* Header: usuario-auth-key: controle de CRUD por usuário*
+O sistema é composto por várias APIs:
 
-Domínio usuário
-* Criação de DTOs, service, entitie, repository
-
-OBSERVAÇÃO: O requisito do dominio usuário não está claro, optamos por faze-lo da maneira mais simples e facil de refatorar,
-que é incluir o campo usuario em cada tabela, fazendo que as APIs gravem ou consultem dados conforme usuario informado no header. 
-
-## Features:
-
-*  🙋🏽‍♀️API Pessoas: "Leitura e escrita dos verbos HTTP"<br>
-*  📒API Endereço: "Leitura e escrita dos verbos HTTP"<br>
-*  💻API Eletrodomésticos: "Leitura e escrita dos verbos HTTP"<br>
+- 👤**API Clientes**: Gerencia os dados do cliente.
+- 📒**API Localidade**: Gerencia os dados de localização.
+- 🏨**API Prédio**: Gerencia os dados do prédio.
+- 😴**API Quarto**: Gerencia os dados do quarto.
+- 📅**API Reserva**: Gerencia os dados de reserva.
+- 🍴**API Serviço Opcional**: Gerencia os dados de serviços opcionais.
 
 ## Tecnologias e ferramentas utilizadas:
 
@@ -32,9 +24,11 @@ que é incluir o campo usuario em cada tabela, fazendo que as APIs gravem ou con
 * [Lombock] Dependência para requisições HTTP
 * [Postman](https://www.postman.com/): Ferramenta para teste de requisições HTTP
 * [Open Api - Swagger] Dependência para gerar interface amigável para testes
-* [h2] Banco de dados em memória
+* [H2] Banco de dados em memória
 
 ## Dificuldades encontradas:
+
+## Desafios
 
 Optamos por trabalhar em monolito para criação da nossa aplicação e assim ganhar tempo para desenvolver outras camadas que compõe o projeto;
 
@@ -50,19 +44,13 @@ A partir desse ponto, realizamos algumas reuniões de alinhamento e planejamento
 
 ## Pontos chaves do projeto:
 
-Durante as reuniões no inicio do projeto definimos algumas informações básicas que as API’s iriam precisar para atender ao projeto, e as mapeamos da seguinte forma:
-* API Clientes:
-ID, nomeCompleto, dataNascimento, CPF, passaporte, paisDeOrigem, endereco, email, telefone, sexo.
-* API Localidade:
-  ID, nome, amenidades, endereco, cep, numero, complemento, bairro, cidade, estado, predios.
-* API Prédio:
-  ID, nome, localidade, quartos.
-* API Quarto
-  ID, tipo, totalPessoas, totalCamas, outrosMoveis, valorDiaria, predio, reservas.
-* API Reserva:
-  ID, cliente, dataEntrada, dataSaida, totalPessoas, quartos, valorTotal, status.
-* API Serviço Opcional:
-  ID, nome, valor, tipo (serviço ou item).
+Durante as reuniões do projeto, definimos algumas informações básicas que as APIs precisariam para atender aos requisitos do projeto. Mapeamos da seguinte forma:
+- **API Clientes**: ID, nomeCompleto, dataNascimento, CPF, passaporte, paisDeOrigem, endereco, email, telefone, sexo.
+- **API Localidade**: ID, nome, amenidades, endereco, cep, numero, complemento, bairro, cidade, estado, predios.
+- **API Prédio**: ID, nome, localidade, quartos.
+- **API Quarto**: ID, tipo, totalPessoas, totalCamas, outrosMoveis, valorDiaria, predio, reservas.
+- **API Reserva**: ID, cliente, dataEntrada, dataSaida, totalPessoas, quartos, valorTotal, status.
+- **API Serviço Opcional**: ID, nome, valor, tipo (serviço ou item).
 
 ## Método de utilização da(s) API(s):
 
