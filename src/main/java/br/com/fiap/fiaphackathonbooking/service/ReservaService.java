@@ -80,6 +80,8 @@ public class ReservaService {
         
         reserva.setStatus(Status.CONFIRMADO);
         reservaRepository.save(reserva);
+
+        enviarEmailConfirmacao(reserva.getId());
     }
 
     public ReservaDTO salvarReserva(Long id, ReservaDTO reservaDTO) {
