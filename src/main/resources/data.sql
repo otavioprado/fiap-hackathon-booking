@@ -46,4 +46,4 @@ INSERT INTO quarto (tipo, total_pessoas, total_camas, outros_moveis, valor_diari
 INSERT INTO cliente
 (nome_completo, data_nascimento, cpf, passaporte, pais_de_origem, endereco, email, telefone, sexo)
 VALUES
-    ('Jack Sparrow', '1690-01-01', '00000000000', 'P1R4T3S', 'Caribe', 'Navio Pérola Negra, Mar do Caribe', 'otaviofelipedoprado@gmail.com', '0000-0000', 'MASCULINO');
+    ('Jack Sparrow', '1690-01-01', '00000000000', 'P1R4T3S', 'Caribe', 'Navio Pérola Negra, Mar do Caribe', 'ksilvaribeiro97@gmail.com', '0000-0000', 'MASCULINO');

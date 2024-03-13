@@ -17,6 +17,7 @@ public interface ReservaMapper {
 
     @Mapping(target = "quartosIds", source = "quartos")
     @Mapping(target = "servicosOpcionais", source = "servicosOpcionais", qualifiedByName = "servicosOpcionaisToNomes")
+    @Mapping(target = "clienteId", source = "cliente.id")
     ReservaDTO reservaToReservaDTO(Reserva reserva);
 
     @Mapping(target = "quartos", ignore = true)
