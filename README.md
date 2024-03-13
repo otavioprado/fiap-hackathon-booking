@@ -59,7 +59,9 @@ curl --location 'http://localhost:8080/booking/api/servicos-opcionais'
 curl --location --request POST 'http://localhost:8080/booking/api/quartos/2/admin/bloquear'
 curl --location --request POST 'http://localhost:8080/booking/api/quartos/2/admin/bloquear'
 ```
-Importante: para consultar todas as opções de APIs, favor acessar a collection POSTMAN disponibilizada: [FIAP - Booking.postman_collection.json](src%2Fmain%2Fresources%2FFIAP%20-%20Booking.postman_collection.json)
+Importante: para consultar todas as opções de APIs, favor acessar a collection POSTMAN disponibilizada: 
+
+- [FIAP - Booking.postman_collection.json](src%2Fmain%2Fresources%2FFIAP%20-%20Booking.postman_collection.json)
 ![img.png](img.png)
 
 
@@ -105,7 +107,7 @@ Durante as reuniões do projeto, definimos algumas informações básicas que as
 Acessa o arquivo swagger da aplicação pelo link: [api-docs.json](src%2Fmain%2Fresources%2Fapi-docs.json)
 Basta colar o documento no site: [Swagger Editor](https://editor.swagger.io/)
 
-Você pode também pode consultar a documentação da API utilizando o Swagger. Para isso, siga os passos abaixo:
+Você pode também pode consultar a documentação da API em run-time. Para isso, siga os passos abaixo:
 
 Certifique-se de que a aplicação está em execução.
 Abra um navegador web e navegue até http://localhost:8080/booking/swagger-ui.html.
