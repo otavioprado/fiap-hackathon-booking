@@ -8,5 +8,7 @@ import org.mapstruct.Mapper;
 public interface QuartoMapper {
     QuartoDTO toDTO(Quarto tenant);
 
+
+
     Quarto toEntity(QuartoDTO dto);
 }

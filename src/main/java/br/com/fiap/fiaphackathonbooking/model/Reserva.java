@@ -1,6 +1,8 @@
 package br.com.fiap.fiaphackathonbooking.model;
 
+import br.com.fiap.fiaphackathonbooking.enums.Status;
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,6 +13,7 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
+@Data
 public class Reserva {
 
     @Id
@@ -48,5 +51,8 @@ public class Reserva {
 
     @Column(name = "valor_total")
     private double valorTotal;
+
+    @Enumerated(EnumType.STRING)
+    private Status status;
 }
 

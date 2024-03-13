@@ -1,10 +1,9 @@
 {
 	"info": {
-		"_postman_id": "a9ef42e2-5cec-428a-a5d2-f4bec7770e72",
+		"_postman_id": "1c868154-6d27-4e9c-9b03-426cc239c302",
 		"name": "FIAP - Booking",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "2416879",
-		"_collection_link": "https://warped-meteor-302132.postman.co/workspace/FIAP---Hackaton~94971455-a2b0-4e84-a2de-73775d91e8c4/collection/2416879-a9ef42e2-5cec-428a-a5d2-f4bec7770e72?action=share&source=collection_link&creator=2416879"
+		"_exporter_id": "30130717"
 	},
 	"item": [
 		{
@@ -574,6 +573,120 @@
 					"response": []
 				},
 				{
+					"name": "[POST] Confirmar Reserva",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/booking/api/reservas/2/confirmar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"booking",
+								"api",
+								"reservas",
+								"2",
+								"confirmar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[POST] Adicionar Item na Reserva",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/booking/api/reservas/2/adicionar-item/9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"booking",
+								"api",
+								"reservas",
+								"2",
+								"adicionar-item",
+								"9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[POST] Remover Item na Reserv",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/booking/api/reservas/2/remover-item/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"booking",
+								"api",
+								"reservas",
+								"2",
+								"remover-item",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[POST] Cancelar Reserva",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/booking/api/reservas/1/cancelar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"booking",
+								"api",
+								"reservas",
+								"1",
+								"cancelar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "[POST] Enviar E-mail de Confirmação",
 					"request": {
 						"method": "POST",
@@ -588,7 +701,7 @@
 							"raw": "{\n  \"clienteId\": 1,\n  \"dataEntrada\": \"2023-05-01\",\n  \"dataSaida\": \"2023-05-05\",\n  \"quartosIds\": [1, 2],\n  \"servicosOpcionais\": [\"Jantar\",\"Café da manhã\"],\n  \"valorTotal\": 1500.00\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/booking/api/reservas/enviarEmail/1",
+							"raw": "http://localhost:8080/booking/api/reservas/1/enviar-email",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -598,8 +711,8 @@
 								"booking",
 								"api",
 								"reservas",
-								"enviarEmail",
-								"1"
+								"1",
+								"enviar-email"
 							]
 						}
 					},
@@ -617,7 +730,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"clienteId\": 123,\n  \"dataEntrada\": \"2023-04-01\",\n  \"dataSaida\": \"2023-04-05\",\n  \"quartosIds\": [1, 2],\n  \"servicosOpcionais\": [\"Café da manhã\", \"Acesso à piscina\"],\n  \"valorTotal\": 1500.00\n}"
+							"raw": "{\n  \"clienteId\": 1,\n  \"dataEntrada\": \"2023-04-01\",\n  \"dataSaida\": \"2023-04-05\",\n  \"quartosIds\": [1, 2],\n  \"servicosOpcionais\": [\"Jantar\",\"Café da manhã\"],\n  \"valorTotal\": 1500.00\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8080/booking/api/reservas/1",

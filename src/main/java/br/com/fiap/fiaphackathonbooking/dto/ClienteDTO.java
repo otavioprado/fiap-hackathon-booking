@@ -38,17 +38,15 @@ public class ClienteDTO {
     private String email;
 
     @NotBlank(message = "Precisa inserir número de telefone")
-   @Pattern(regexp = "\\(\\d{2}\\)\\s\\d{4}-\\d{4}", message = "Número de telefone inválido")
+    @Pattern(regexp = "\\(\\d{2}\\)\\s\\d{4}-\\d{4}", message = "Número de telefone inválido")
     private String telefone;
     @NotBlank (message = "Precisa inserir País de origem")
     private String paisDeOrigem;
     @NotBlank (message = "Precisa inserir seu endereço")
     private String endereco;
 
-
     @JsonProperty // Incluir o campo "id" na serialização no método GET
     public Long getId() {
         return id;
     }
-
 }

@@ -1,6 +1,9 @@
 package br.com.fiap.fiaphackathonbooking.service;
 
 import br.com.fiap.fiaphackathonbooking.dto.ReservaDTO;
+import br.com.fiap.fiaphackathonbooking.enums.Status;
+import br.com.fiap.fiaphackathonbooking.exceptions.NotFoundException;
+import br.com.fiap.fiaphackathonbooking.exceptions.UnprocessableEntityException;
 import br.com.fiap.fiaphackathonbooking.mapper.ReservaMapper;
 import br.com.fiap.fiaphackathonbooking.model.Cliente;
 import br.com.fiap.fiaphackathonbooking.model.Quarto;
@@ -30,6 +33,53 @@ public class ReservaService {
     private final ReservaMapper reservaMapper;
     private final EmailService emailService;
 
+    public void adicionarItemReserva(Long idReserva, Long idItem) {
+        Reserva reserva = reservaRepository.findById(idReserva)
+                .orElseThrow(() -> new NotFoundException("Reserva não encontrada com o ID: " + idReserva));
+
+        if(reservaAtiva(reserva)) {
+            throw new UnprocessableEntityException("Não é possível alterar uma reserva " + reserva.getStatus());
+        }
+
+        ServicoOpcional servicoOpcional = servicoOpcionalRepository.findById(idItem)
+                .orElseThrow(() -> new NotFoundException("ServiçoOpcional não encontrado com o ID: " + idItem));
+        reserva.getServicosOpcionais().add(servicoOpcional);
+        reservaRepository.save(reserva);
+    }
+
+    public void removeItemReserva(Long idReserva, Long idItem) {
+        Reserva reserva = reservaRepository.findById(idReserva)
+                .orElseThrow(() -> new NotFoundException("Reserva não encontrada com o ID: " + idReserva));
+
+        if(reservaAtiva(reserva)) {
+            throw new UnprocessableEntityException("Não é possível alterar uma reserva " + reserva.getStatus());
+        }
+
+        ServicoOpcional servicoOpcional = servicoOpcionalRepository.findById(idItem)
+                .orElseThrow(() -> new NotFoundException("ServiçoOpcional não encontrado com o ID: " + idItem));
+        reserva.getServicosOpcionais().remove(servicoOpcional);
+        reservaRepository.save(reserva);
+    }
+
+    public void cancelarReserva(Long id) {
+        Reserva reserva = reservaRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Reserva não encontrada com o ID: " + id));
+        reserva.setStatus(Status.CANCELADO);
+        reservaRepository.save(reserva);
+    }
+
+    public void confirmarReserva(Long id) {
+        Reserva reserva = reservaRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Reserva não encontrada com o ID: " + id));
+
+        if(reservaAtiva(reserva)) {
+            throw new UnprocessableEntityException("Não é possível alterar uma reserva " + reserva.getStatus());
+        }
+        
+        reserva.setStatus(Status.CONFIRMADO);
+        reservaRepository.save(reserva);
+    }
+
     public ReservaDTO salvarReserva(Long id, ReservaDTO reservaDTO) {
         Optional<Cliente> clientById = clienteRepository.findById(reservaDTO.getClienteId());
 
@@ -48,7 +98,11 @@ public class ReservaService {
 
             if (id != null) {
                 // Se for uma atualização de reserva, verifica se as datas podem ser expandidas ou se irá conflitar com alguma outra reserva que não seja a própria
-                Reserva reservaExistente = reservaRepository.findById(id).orElseThrow(() -> new RuntimeException("Reserva não encontrada com o ID: " + id));
+                Reserva reservaExistente = reservaRepository.findById(id).orElseThrow(() -> new NotFoundException("Reserva não encontrada com o ID: " + id));
+
+                if(reservaAtiva(reservaExistente)) {
+                    throw new UnprocessableEntityException("Não é possível alterar uma reserva " + reservaExistente.getStatus());
+                }
 
                 LocalDate novaDataEntrada = reservaDTO.getDataEntrada();
                 LocalDate novaDataSaida = reservaDTO.getDataSaida();
@@ -56,7 +110,7 @@ public class ReservaService {
                 // Verificar se as novas datas conflitam com outras reservas
                 boolean conflitoComOutrasReservas = reservaRepository.existsReservaConflitoOutrasReservas(id, quartoId, novaDataEntrada, novaDataSaida);
                 if (conflitoComOutrasReservas) {
-                    throw new RuntimeException("As novas datas da reserva conflitam com outra reserva para o Quarto com ID " + quartoId + ".");
+                    throw new UnprocessableEntityException("As novas datas da reserva conflitam com outra reserva para o Quarto com ID " + quartoId + ".");
                 }
             }
 
@@ -87,7 +141,7 @@ public class ReservaService {
             for (String nomeServico : reservaDTO.getServicosOpcionais()) {
                 List<ServicoOpcional> servicosEncontrados = servicoOpcionalRepository.findByNomeLikeIgnoreCase(nomeServico);
                 if (servicosEncontrados.isEmpty()) {
-                    throw new RuntimeException("Serviço opcional não encontrado: " + nomeServico);
+                    throw new UnprocessableEntityException("Serviço opcional não encontrado: " + nomeServico);
                 }
                 servicosOpcionais.addAll(servicosEncontrados);
             }
@@ -112,16 +166,25 @@ public class ReservaService {
             reservaExistente.setQuartos(reserva.getQuartos());
             reservaExistente.setServicosOpcionais(reserva.getServicosOpcionais());
             reservaExistente.setValorTotal(reserva.getValorTotal());
+            reservaExistente.setStatus(Status.CRIADO);
             novaReserva = reservaRepository.save(reservaExistente);
         } else {
-            // Criar nova reserva
+            reserva.setStatus(Status.CRIADO);
             novaReserva = reservaRepository.save(reserva);
         }
 
         return reservaMapper.reservaToReservaDTO(novaReserva);
     }
 
-    public void cancelarReserva(Long id) {
+    public ReservaDTO atualizarReserva(Long id, ReservaDTO reservaDTO) {
+        Reserva reservaExistente = reservaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Reserva não encontrada com o ID: " + id));
+
+        Reserva reservaAtualizada = reservaRepository.save(reservaExistente);
+        return reservaMapper.reservaToReservaDTO(reservaAtualizada);
+    }
+
+    public void deletarReserva(Long id) {
         Reserva reserva = reservaRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Reserva não encontrada com o ID: " + id));
         reservaRepository.delete(reserva);
@@ -157,6 +220,10 @@ public class ReservaService {
         emailService.enviarEmailConfirmacao(destinatario, assunto, corpo);
 
         return true;
+    }
+
+    private boolean reservaAtiva(Reserva reserva) {
+        return reserva.getStatus() != Status.CRIADO;
     }
 }
 

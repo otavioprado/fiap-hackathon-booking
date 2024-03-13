@@ -18,6 +18,30 @@ public class ReservaController {
         this.reservaService = reservaService;
     }
 
+
+    @PostMapping("/{id}/adicionar-item/{idItem}")
+    public ResponseEntity<Void> adicionarItemReserva(@PathVariable Long id, @PathVariable Long idItem) {
+        reservaService.adicionarItemReserva(id, idItem);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
+    @PostMapping("/{id}/remover-item/{idItem}")
+    public ResponseEntity<Void> removeItemReserva(@PathVariable Long id, @PathVariable Long idItem) {
+        reservaService.removeItemReserva(id, idItem);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+    @PostMapping("/{id}/cancelar")
+    public ResponseEntity<Void>  cancelarReserva(@PathVariable Long id) {
+        reservaService.cancelarReserva(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
+    @PostMapping("/{id}/confirmar")
+    public ResponseEntity<Void>  confirmarReserva(@PathVariable Long id) {
+        reservaService.confirmarReserva(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
     @PostMapping
     public ResponseEntity<ReservaDTO> criarReserva(@RequestBody ReservaDTO reservaDTO) {
         ReservaDTO novaReserva = reservaService.salvarReserva(null, reservaDTO);
@@ -31,8 +55,8 @@ public class ReservaController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> cancelarReserva(@PathVariable Long id) {
-        reservaService.cancelarReserva(id);
+    public ResponseEntity<Void> deletarReserva(@PathVariable Long id) {
+        reservaService.deletarReserva(id);
         return ResponseEntity.noContent().build();
     }
 
@@ -47,10 +71,10 @@ public class ReservaController {
         return ResponseEntity.ok(reserva);
     }
 
-    @PostMapping("/enviarEmail/{idReserva}")
-    public ResponseEntity<String> enviarEmailConfirmacao(@PathVariable Long idReserva) {
+    @PostMapping("/{id}/enviar-email")
+    public ResponseEntity<String> enviarEmailConfirmacao(@PathVariable Long id) {
         // Simulação do envio de email
-        boolean emailEnviado = reservaService.enviarEmailConfirmacao(idReserva);
+        boolean emailEnviado = reservaService.enviarEmailConfirmacao(id);
         if (emailEnviado) {
             return ResponseEntity.ok("Email de confirmação enviado.");
         } else {
