@@ -43,6 +43,6 @@ class ServicoOpcionalServiceTest {
         List<ServicoOpcional> result = service.listarTodos();
 
         assertEquals(1, result.size());
-        assertEquals(1L, result.getFirst().getId());
+        assertEquals(1L, result.get(0).getId());
     }
 }
