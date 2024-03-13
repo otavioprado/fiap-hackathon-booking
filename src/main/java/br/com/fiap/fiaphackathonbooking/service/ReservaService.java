@@ -2,6 +2,7 @@ package br.com.fiap.fiaphackathonbooking.service;
 
 import br.com.fiap.fiaphackathonbooking.dto.ReservaDTO;
 import br.com.fiap.fiaphackathonbooking.mapper.ReservaMapper;
+import br.com.fiap.fiaphackathonbooking.model.Cliente;
 import br.com.fiap.fiaphackathonbooking.model.Quarto;
 import br.com.fiap.fiaphackathonbooking.model.Reserva;
 import br.com.fiap.fiaphackathonbooking.model.ServicoOpcional;
@@ -9,15 +10,11 @@ import br.com.fiap.fiaphackathonbooking.repository.ClienteRepository;
 import br.com.fiap.fiaphackathonbooking.repository.QuartoRepository;
 import br.com.fiap.fiaphackathonbooking.repository.ReservaRepository;
 import br.com.fiap.fiaphackathonbooking.repository.ServicoOpcionalRepository;
-import br.com.fiap.fiaphackathonbooking.utils.StringUtils;
 import lombok.AllArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -29,9 +26,12 @@ public class ReservaService {
     private final QuartoRepository quartoRepository;
     private final ServicoOpcionalRepository servicoOpcionalRepository;
     private final ReservaMapper reservaMapper;
+    private final EmailService emailService;
 
     public ReservaDTO criarReserva(ReservaDTO reservaDTO) {
-        if (!clienteRepository.existsById(reservaDTO.getClienteId())) {
+        Optional<Cliente> clientById = clienteRepository.findById(reservaDTO.getClienteId());
+
+        if (clientById.isEmpty()) {
             throw new DataIntegrityViolationException("Cliente não encontrado com o ID: " + reservaDTO.getClienteId());
         }
 
@@ -66,6 +66,8 @@ public class ReservaService {
             reserva.setServicosOpcionais(new HashSet<>(servicosOpcionais));
         }
 
+        reserva.setCliente(clientById.get());
+
         Reserva novaReserva = reservaRepository.save(reserva);
         return reservaMapper.reservaToReservaDTO(novaReserva);
     }
@@ -98,7 +100,21 @@ public class ReservaService {
     }
 
     public boolean enviarEmailConfirmacao(Long idReserva) {
-        // TODO: implementar a lógica para enviar um email
+        Reserva reserva = reservaRepository.findById(idReserva)
+                .orElseThrow(() -> new RuntimeException("Reserva não encontrada com o ID: " + idReserva));
+
+        // Construa o corpo do e-mail
+        String destinatario = reserva.getCliente().getEmail();
+        String assunto = "Confirmação de Reserva";
+        String corpo = "Sua reserva foi confirmada com sucesso! Detalhes:\n" +
+                "ID da Reserva: " + reserva.getId() + "\n" +
+                "Data de Entrada: " + reserva.getDataEntrada() + "\n" +
+                "Data de Saída: " + reserva.getDataSaida() + "\n" +
+                "Valor Total: " + reserva.getValorTotal();
+
+        // Envie o e-mail de confirmação
+        emailService.enviarEmailConfirmacao(destinatario, assunto, corpo);
+
         return true;
     }
 }
