@@ -76,7 +76,6 @@ Importante: para consultar todas as opções de APIs, favor acessar a collection
 * [Open Api - Swagger] Dependência para gerar interface amigável para testes
 * [H2] Banco de dados em memória
 
-## Dificuldades encontradas:
 
 ## Desafios
 
@@ -102,19 +101,17 @@ Durante as reuniões do projeto, definimos algumas informações básicas que as
 - **API Reserva**: ID, cliente, dataEntrada, dataSaida, totalPessoas, quartos, valorTotal, status.
 - **API Serviço Opcional**: ID, nome, valor, tipo (serviço ou item).
 
-## Método de utilização da(s) API(s):
-
-Para demonstração de utilização da(s) API(s) será utilizado o Swagger pela sua interface mais amigável, porém dentro do projeto foi gerado um arquivo de importação Jason do Postman que pode ser utilizado colocando as mesmas informações apresentadas no Swagger.
-* [Swagger](http://localhost:8080/booking/swagger-ui/index.html#/) /): Servidor local para teste requisições HTTP (Browser);
-* [Arquivo para teste Postman](https://warped-meteor-302132.postman.co/workspace/App-Consumo-Eletro~60891746-3429-418a-9499-910f095c31d9/collection/27681645-57d87472-1132-46fc-8916-268f42ac6cce?action=share&creator=27681645 ): Arquivo para simulação direto na máquina (PC).
-
 ## Consultando a Documentação da API
-Você pode consultar a documentação da API utilizando o Swagger. Para isso, siga os passos abaixo:
+Acessa o arquivo swagger da aplicação pelo link: [api-docs.json](src%2Fmain%2Fresources%2Fapi-docs.json)
+Basta colar o documento no site: [Swagger Editor](https://editor.swagger.io/)
+
+Você pode também pode consultar a documentação da API utilizando o Swagger. Para isso, siga os passos abaixo:
 
 Certifique-se de que a aplicação está em execução.
 Abra um navegador web e navegue até http://localhost:8080/booking/swagger-ui.html.
 Isso abrirá a interface do Swagger, onde você poderá explorar todos os endpoints disponíveis, seus parâmetros e respostas.
 
+## Método de utilização da(s) API(s):
 ## Arquivo do Postman
 Para facilitar o teste e a utilização da API, disponibilizamos um arquivo do Postman com todas as requisições pré-configuradas. Você pode encontrar o arquivo em:
 
@@ -123,8 +120,6 @@ Para facilitar o teste e a utilização da API, disponibilizamos um arquivo do P
 ```
 
 Basta importar esse arquivo para o seu ambiente do Postman e começar a usar as requisições imediatamente.
-
-
 
 ## Diagrama de tabelas:
 ![Imagem do WhatsApp de 2024-03-13 à(s) 15 09 19_4d8cc485](https://github.com/otavioprado/fiap-hackathon-booking/assets/133544024/ad57fc12-7514-4d5c-871e-f9534d2fc710)
