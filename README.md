@@ -126,3 +126,6 @@ Basta importar esse arquivo para o seu ambiente do Postman e começar a usar as 
 ## Coverage dos testes:
 ![img_1.png](img_1.png)
 
+## Diagrama de arquitetura:
+![architecture_diagram.drawio.png](src%2Fmain%2Fresources%2Farchitecture_diagram.drawio.png)
+arquivo fonte: [architecture_diagram.xml](src%2Fmain%2Fresources%2Farchitecture_diagram.xml) (basta abrir em https://app.diagrams.net/)
