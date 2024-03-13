@@ -42,6 +42,11 @@ public class ReservaService {
             if (!disponivel) {
                 throw new RuntimeException("Quarto com ID " + quartoId + " não está disponível nas datas selecionadas.");
             }
+
+            Quarto quarto = quartoRepository.findById(quartoId).orElseThrow(() -> new RuntimeException("Quarto não encontrado com o ID: " + quartoId));
+            if (quarto.isBlockedByAdmin()) {
+                throw new RuntimeException("Quarto com ID " + quartoId + " não está disponível para reserva, pois foi bloqueado por um administrador.");
+            }
         }
 
         Set<Quarto> quartos = reservaDTO.getQuartosIds().stream()

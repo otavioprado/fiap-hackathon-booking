@@ -2,6 +2,7 @@ package br.com.fiap.fiaphackathonbooking.service;
 
 import br.com.fiap.fiaphackathonbooking.dto.QuartoDTO;
 import br.com.fiap.fiaphackathonbooking.exceptions.NotFoundException;
+import br.com.fiap.fiaphackathonbooking.mapper.QuartoMapper;
 import br.com.fiap.fiaphackathonbooking.model.Quarto;
 import br.com.fiap.fiaphackathonbooking.repository.PredioRepository;
 import br.com.fiap.fiaphackathonbooking.repository.QuartoRepository;
@@ -19,6 +20,7 @@ public class QuartoService {
     private final QuartoRepository quartoRepository;
     private final PredioRepository predioRepository;
     private final ModelMapper modelMapper;
+    private final QuartoMapper quartoMapper;
 
     @Transactional
     public QuartoDTO adicionarQuarto(QuartoDTO quartoDTO) {
@@ -57,5 +59,13 @@ public class QuartoService {
         Quarto quarto = quartoRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Quarto não encontrado com id: " + id));
         return modelMapper.map(quarto, QuartoDTO.class);
+    }
+
+    public QuartoDTO updateBlockedByAdmin(Long quartoId, boolean blockedByAdmin) {
+        Quarto quarto = quartoRepository.findById(quartoId)
+                .orElseThrow(() -> new RuntimeException("Quarto não encontrado com o ID: " + quartoId));
+        quarto.setBlockedByAdmin(blockedByAdmin);
+        Quarto save = quartoRepository.save(quarto);
+        return quartoMapper.toDTO(save);
     }
 }

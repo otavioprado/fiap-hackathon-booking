@@ -35,5 +35,8 @@ public class Quarto {
 
     @ManyToMany(mappedBy = "quartos")
     private Set<Reserva> reservas = new HashSet<>();
+
+    @Column(name = "blocked_by_admin")
+    private boolean isBlockedByAdmin;
 }
 

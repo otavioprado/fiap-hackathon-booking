@@ -20,28 +20,28 @@ INSERT INTO predio (nome, localidade_id) VALUES ('Casa Principal', 1);
 
 --- Quarto
 -- Standard Simples
-INSERT INTO quarto (tipo, total_pessoas, total_camas, outros_moveis, valor_diaria, predio_id) VALUES
-    ('Standard Simples', 2, 1, '1 x Sofá, 1 x Poltrona, 1 x Frigobar, 1 x TV Led 54 pols., 1 x Mesa de Escritório, 1 x Cadeira de Escritório', 350.00, 1);
+INSERT INTO quarto (tipo, total_pessoas, total_camas, outros_moveis, valor_diaria, predio_id, blocked_by_admin) VALUES
+    ('Standard Simples', 2, 1, '1 x Sofá, 1 x Poltrona, 1 x Frigobar, 1 x TV Led 54 pols., 1 x Mesa de Escritório, 1 x Cadeira de Escritório', 350.00, 1, false);
 
 -- Standard Duplo
-INSERT INTO quarto (tipo, total_pessoas, total_camas, outros_moveis, valor_diaria, predio_id) VALUES
-    ('Standard Duplo', 4, 3, '1 x Sofá, 2 x Poltronas, 1 x Frigobar, 1 x TV Led 54 pols., 1 x Mesa de Escritório, 1 x Cadeira de Escritório', 450.00, 1);
+INSERT INTO quarto (tipo, total_pessoas, total_camas, outros_moveis, valor_diaria, predio_id, blocked_by_admin) VALUES
+    ('Standard Duplo', 4, 3, '1 x Sofá, 2 x Poltronas, 1 x Frigobar, 1 x TV Led 54 pols., 1 x Mesa de Escritório, 1 x Cadeira de Escritório', 450.00, 1, false);
 
 -- Luxo Simples
-INSERT INTO quarto (tipo, total_pessoas, total_camas, outros_moveis, valor_diaria, predio_id) VALUES
-    ('Luxo Simples', 2, 1, '1 x Sofá, 2 x Poltronas, 1 x Frigobar, 1 x TV Led 62 pols., 1 x Mesa de Escritório, 1 x Cadeira de Escritório', 550.00, 1);
+INSERT INTO quarto (tipo, total_pessoas, total_camas, outros_moveis, valor_diaria, predio_id, blocked_by_admin) VALUES
+    ('Luxo Simples', 2, 1, '1 x Sofá, 2 x Poltronas, 1 x Frigobar, 1 x TV Led 62 pols., 1 x Mesa de Escritório, 1 x Cadeira de Escritório', 550.00, 1, false);
 
 -- Luxo Duplo
-INSERT INTO quarto (tipo, total_pessoas, total_camas, outros_moveis, valor_diaria, predio_id) VALUES
-    ('Luxo Duplo', 4, 3, '1 x Sofá, 2 x Poltronas, 1 x Frigobar, 1 x TV Led 62 pols., 1 x Mesa de Escritório, 1 x Cadeira de Escritório', 650.00, 1);
+INSERT INTO quarto (tipo, total_pessoas, total_camas, outros_moveis, valor_diaria, predio_id, blocked_by_admin) VALUES
+    ('Luxo Duplo', 4, 3, '1 x Sofá, 2 x Poltronas, 1 x Frigobar, 1 x TV Led 62 pols., 1 x Mesa de Escritório, 1 x Cadeira de Escritório', 650.00, 1, false);
 
 -- Premium Simples
-INSERT INTO quarto (tipo, total_pessoas, total_camas, outros_moveis, valor_diaria, predio_id) VALUES
-    ('Premium Simples', 2, 1, '1 x Sofá, 2 x Poltronas, 1 x Frigobar, 1 x TV Led 62 pols., 1 x Mesa de Escritório, 1 x Cadeira de Escritório', 850.00, 1);
+INSERT INTO quarto (tipo, total_pessoas, total_camas, outros_moveis, valor_diaria, predio_id, blocked_by_admin) VALUES
+    ('Premium Simples', 2, 1, '1 x Sofá, 2 x Poltronas, 1 x Frigobar, 1 x TV Led 62 pols., 1 x Mesa de Escritório, 1 x Cadeira de Escritório', 850.00, 1, false);
 
 -- Premium Duplo
-INSERT INTO quarto (tipo, total_pessoas, total_camas, outros_moveis, valor_diaria, predio_id) VALUES
-    ('Premium Duplo', 4, 2, '1 x Sofá, 2 x Poltronas, 1 x Frigobar, 1 x TV Led 62 pols., 1 x Mesa de Escritório, 1 x Cadeira de Escritório', 950.00, 1);
+INSERT INTO quarto (tipo, total_pessoas, total_camas, outros_moveis, valor_diaria, predio_id, blocked_by_admin) VALUES
+    ('Premium Duplo', 4, 2, '1 x Sofá, 2 x Poltronas, 1 x Frigobar, 1 x TV Led 62 pols., 1 x Mesa de Escritório, 1 x Cadeira de Escritório', 950.00, 1, false);
 
 INSERT INTO cliente
 (nome_completo, data_nascimento, cpf, passaporte, pais_de_origem, endereco, email, telefone, sexo)

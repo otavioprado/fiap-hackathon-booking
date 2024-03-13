@@ -32,9 +32,16 @@ public class QuartoDTO {
     private double valorDiaria;
     @NotNull(message = "Id do prédio é obrigatório")
     private Long predioId;
+    @JsonIgnore // Ignorar o campo "isBlockedByAdmin" na serialização no método POST
+    private boolean isBlockedByAdmin;
 
     @JsonProperty // Incluir o campo "id" na serialização no método GET
     public Long getId() {
         return id;
+    }
+
+    @JsonProperty // Incluir o campo "isBlockedByAdmin" na serialização no método GET
+    public boolean isBlockedByAdmin() {
+        return isBlockedByAdmin;
     }
 }

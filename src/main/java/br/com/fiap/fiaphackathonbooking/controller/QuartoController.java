@@ -1,6 +1,7 @@
 package br.com.fiap.fiaphackathonbooking.controller;
 
 import br.com.fiap.fiaphackathonbooking.dto.QuartoDTO;
+import br.com.fiap.fiaphackathonbooking.model.Quarto;
 import br.com.fiap.fiaphackathonbooking.service.QuartoService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -45,5 +46,17 @@ public class QuartoController {
     public ResponseEntity<QuartoDTO> buscarQuartoPorId(@PathVariable Long id) {
         QuartoDTO quarto = quartoService.buscarPorId(id);
         return ResponseEntity.ok(quarto);
+    }
+
+    @PostMapping("/{quartoId}/admin/bloquear")
+    public ResponseEntity<QuartoDTO> bloquearQuartoPorAdmin(@PathVariable Long quartoId) {
+        QuartoDTO quartoDTO = quartoService.updateBlockedByAdmin(quartoId, true);
+        return ResponseEntity.ok(quartoDTO);
+    }
+
+    @PostMapping("/{quartoId}/admin/desbloquear")
+    public ResponseEntity<QuartoDTO> desbloquearQuartoPorAdmin(@PathVariable Long quartoId) {
+        QuartoDTO quartoDTO = quartoService.updateBlockedByAdmin(quartoId, false);
+        return ResponseEntity.ok(quartoDTO);
     }
 }
