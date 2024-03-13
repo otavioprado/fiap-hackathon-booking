@@ -1,21 +1,16 @@
 package br.com.fiap.fiaphackathonbooking.mapper;
 
-import br.com.fiap.fiaphackathonbooking.dto.ClienteDTO;
 import br.com.fiap.fiaphackathonbooking.dto.QuartoDTO;
-import br.com.fiap.fiaphackathonbooking.enums.Sexo;
-import br.com.fiap.fiaphackathonbooking.model.Cliente;
 import br.com.fiap.fiaphackathonbooking.model.Quarto;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.time.LocalDate;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
 
-public class QuartoUnitTest {
+public class QuartoMapperUnitTest {
     @Mock
     private QuartoMapper mapper;
 
