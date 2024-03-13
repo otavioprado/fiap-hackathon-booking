@@ -2,8 +2,15 @@
 
 Este projeto é um sistema de gestão de hospitalidade, especificamente um sistema de reservas para hotéis. Ele permite aos usuários agendar, buscar a melhor solução custo-benefício e pré-reservar serviços e opções.
 
-## Features
+## Executando o projeto localmente com Docker Compose
+Para iniciar este projeto localmente usando Docker, execute o seguinte comando na pasta raiz do projeto:
 
+```shell
+docker-compose up --build
+```
+Após iniciar o projeto com o Docker Compose, a API estará disponível para acesso em http://localhost:8080/booking/api/. Essa URL segue o padrão http://localhost:8080/ seguido do contexto da aplicação (booking) e do endpoint da API (api). Dessa forma, você poderá interagir com os endpoints fornecidos pela API através dessa URL.
+
+## Features
 O sistema é composto por várias APIs:
 
 - 👤**API Clientes**: Gerencia os dados do cliente.
