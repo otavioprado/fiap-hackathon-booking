@@ -123,6 +123,77 @@
 					"name": "Quartos",
 					"item": [
 						{
+							"name": "Administrador",
+							"item": [
+								{
+									"name": "[POST] Bloquear Quarto",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"tipo\": \"Premium Simples\",\n    \"totalPessoas\": 2,\n    \"totalCamas\": 1,\n    \"outrosMoveis\": \"1 x Sofá, 2 x Poltronas, 1 x Frigobar, 1 x TV Led 62 pols., 1 x Mesa de Escritório, 1 x Cadeira de Escritório\",\n    \"valorDiaria\": 850.0,\n    \"predioId\": 1\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8080/booking/api/quartos/2/admin/bloquear",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"booking",
+												"api",
+												"quartos",
+												"2",
+												"admin",
+												"bloquear"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "[POST] Desbloquear Quarto",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"tipo\": \"Premium Simples\",\n    \"totalPessoas\": 2,\n    \"totalCamas\": 1,\n    \"outrosMoveis\": \"1 x Sofá, 2 x Poltronas, 1 x Frigobar, 1 x TV Led 62 pols., 1 x Mesa de Escritório, 1 x Cadeira de Escritório\",\n    \"valorDiaria\": 850.0,\n    \"predioId\": 1\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8080/booking/api/quartos/2/admin/bloquear",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"booking",
+												"api",
+												"quartos",
+												"2",
+												"admin",
+												"bloquear"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
 							"name": "[GET] Listar Quartos",
 							"request": {
 								"method": "GET",
@@ -503,6 +574,38 @@
 					"response": []
 				},
 				{
+					"name": "[POST] Enviar E-mail de Confirmação",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"clienteId\": 1,\n  \"dataEntrada\": \"2023-05-01\",\n  \"dataSaida\": \"2023-05-05\",\n  \"quartosIds\": [1, 2],\n  \"servicosOpcionais\": [\"Jantar\",\"Café da manhã\"],\n  \"valorTotal\": 1500.00\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/booking/api/reservas/enviarEmail/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"booking",
+								"api",
+								"reservas",
+								"enviarEmail",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "[PUT] Atualizar Reserva",
 					"request": {
 						"method": "PUT",
@@ -593,7 +696,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"nomeCompleto\":\"Jack Sparrow\",\r\n\"dataNascimento\": \"2023-04-12\",\r\n\"cpf\": \"48464167040\",\r\n\"sexo\": \"MASCULINO\",\r\n\"email\": \"jackzinho_matadordedragao@gmail.com\",\r\n\"telefone\": \"1234-1234\",\r\n\"paisDeOrigem\": \"Brasil\",\r\n\"endereco\": \"Rua dos alfineiros, 61\"\r\n}\r\n",
+							"raw": "{\r\n    \"nomeCompleto\":\"Jack Sparrow\",\r\n    \"dataNascimento\": \"2023-04-12\",\r\n    \"cpf\": \"48464167040\",\r\n    \"sexo\": \"MASCULINO\",\r\n    \"email\": \"jackzinho_matadordedragao@gmail.com\",\r\n    \"telefone\": \"(11) 1234-1234\",\r\n    \"paisDeOrigem\": \"Brasil\",\r\n    \"endereco\": \"Rua dos alfineiros, 61\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -623,7 +726,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"nomeCompleto\":\"Wizarding Kaique\",\r\n\"dataNascimento\": \"2023-04-12\",\r\n\"cpf\": \"48464167040\",\r\n\"sexo\": \"MASCULINO\",\r\n\"email\": \"jackzinho_matadordedragao@gmail.com\",\r\n\"telefone\": \"1234-1234\",\r\n\"paisDeOrigem\": \"Brasil\",\r\n\"endereco\": \"Rua dos alfineiros, 61\"\r\n}\r\n",
+							"raw": "{\r\n    \"nomeCompleto\":\"Wizarding Kaique\",\r\n    \"dataNascimento\": \"2023-04-12\",\r\n    \"cpf\": \"48464167040\",\r\n    \"sexo\": \"MASCULINO\",\r\n    \"email\": \"jackzinho_matadordedragao@gmail.com\",\r\n    \"telefone\": \"(19) 1234-1234\",\r\n    \"paisDeOrigem\": \"Brasil\",\r\n    \"endereco\": \"Rua dos alfineiros, 61\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -664,6 +767,28 @@
 								"api",
 								"clientes",
 								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Cliente por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/booking/api/clientes/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"booking",
+								"api",
+								"clientes",
+								"2"
 							]
 						}
 					},

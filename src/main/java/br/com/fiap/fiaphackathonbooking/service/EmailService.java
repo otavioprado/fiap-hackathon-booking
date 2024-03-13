@@ -21,7 +21,7 @@ public class EmailService {
 
         try {
             helper = new MimeMessageHelper(mensagem, true);
-            helper.setFrom("ksilvaribeiro97@gmail.com");
+            helper.setFrom("RM349103@fiap.com.br");
             helper.setTo(destinatario);
             helper.setSubject(assunto);
             helper.setText(corpo, true);
