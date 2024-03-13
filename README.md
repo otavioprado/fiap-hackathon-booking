@@ -127,5 +127,4 @@ Basta importar esse arquivo para o seu ambiente do Postman e começar a usar as 
 ![img_1.png](img_1.png)
 
 ## Diagrama de arquitetura:
-![architecture_diagram.drawio.png](src%2Fmain%2Fresources%2Farchitecture_diagram.drawio.png)
-arquivo fonte: [architecture_diagram.xml](src%2Fmain%2Fresources%2Farchitecture_diagram.xml) (basta abrir em https://app.diagrams.net/)
+![diagrama_arquitetura_sistema](https://github.com/otavioprado/fiap-hackathon-booking/assets/133544024/671b356a-ffe0-4fa0-9970-8fac0b7fee70)
