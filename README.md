@@ -92,17 +92,6 @@ Durante o desenvolvimento do projeto encontramos alguns problemas de interpreta�
 Estes foram alguns dos levantamentos feitos pela equipe e a partir deles, começamos a estudar as melhores ferramentas para desenvolver as API’s. E como mencionado nas tecnologias e ferramentas utilizadas focamos nelas em específicos durante o projeto.
 A partir desse ponto, realizamos algumas reuniões de alinhamento e planejamento do que seria feito e como seria. 
 
-
-## Pontos chaves do projeto:
-
-Durante as reuniões do projeto, definimos algumas informações básicas que as APIs precisariam para atender aos requisitos do projeto. Mapeamos da seguinte forma:
-- **API Clientes**: ID, nomeCompleto, dataNascimento, CPF, passaporte, paisDeOrigem, endereco, email, telefone, sexo.
-- **API Localidade**: ID, nome, amenidades, endereco, cep, numero, complemento, bairro, cidade, estado, predios.
-- **API Prédio**: ID, nome, localidade, quartos.
-- **API Quarto**: ID, tipo, totalPessoas, totalCamas, outrosMoveis, valorDiaria, predio, reservas.
-- **API Reserva**: ID, cliente, dataEntrada, dataSaida, totalPessoas, quartos, valorTotal, status.
-- **API Serviço Opcional**: ID, nome, valor, tipo (serviço ou item).
-
 ## Consultando a Documentação da API
 Acessa o arquivo swagger da aplicação pelo link: [api-docs.json](src%2Fmain%2Fresources%2Fapi-docs.json)
 Basta colar o documento no site: [Swagger Editor](https://editor.swagger.io/)
