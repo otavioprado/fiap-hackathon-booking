@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 public class QuartoService {
     private final QuartoRepository quartoRepository;
     private final PredioRepository predioRepository;
-    private final ModelMapper modelMapper;
+    private final ModelMapper modelMapper = new ModelMapper();
     private final QuartoMapper quartoMapper;
 
     @Transactional

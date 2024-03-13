@@ -17,7 +17,7 @@ import java.util.List;
 public class ClienteService {
 
     private ClienteRepository clienteRepository;
-    private final ModelMapper modelMapper;
+    private final ModelMapper modelMapper = new ModelMapper();
 
     @Transactional
     public ClienteDTO adicionarCliente(ClienteDTO clienteDTO) {
