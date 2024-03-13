@@ -14,6 +14,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -29,7 +30,7 @@ public class ReservaService {
     private final ReservaMapper reservaMapper;
     private final EmailService emailService;
 
-    public ReservaDTO criarReserva(ReservaDTO reservaDTO) {
+    public ReservaDTO salvarReserva(Long id, ReservaDTO reservaDTO) {
         Optional<Cliente> clientById = clienteRepository.findById(reservaDTO.getClienteId());
 
         if (clientById.isEmpty()) {
@@ -40,8 +41,23 @@ public class ReservaService {
         for (Long quartoId : reservaDTO.getQuartosIds()) {
             boolean disponivel = quartoRepository.isQuartoDisponivel(quartoId, reservaDTO.getDataEntrada(), reservaDTO.getDataSaida());
 
-            if (!disponivel) {
+            if (id == null && !disponivel) {
+                // se for uma nova reserva, verificar se o quarto está disponível
                 throw new RuntimeException("Quarto com ID " + quartoId + " não está disponível nas datas selecionadas.");
+            }
+
+            if (id != null) {
+                // Se for uma atualização de reserva, verifica se as datas podem ser expandidas ou se irá conflitar com alguma outra reserva que não seja a própria
+                Reserva reservaExistente = reservaRepository.findById(id).orElseThrow(() -> new RuntimeException("Reserva não encontrada com o ID: " + id));
+
+                LocalDate novaDataEntrada = reservaDTO.getDataEntrada();
+                LocalDate novaDataSaida = reservaDTO.getDataSaida();
+
+                // Verificar se as novas datas conflitam com outras reservas
+                boolean conflitoComOutrasReservas = reservaRepository.existsReservaConflitoOutrasReservas(id, quartoId, novaDataEntrada, novaDataSaida);
+                if (conflitoComOutrasReservas) {
+                    throw new RuntimeException("As novas datas da reserva conflitam com outra reserva para o Quarto com ID " + quartoId + ".");
+                }
             }
 
             Quarto quarto = quartoRepository.findById(quartoId).orElseThrow(() -> new RuntimeException("Quarto não encontrado com o ID: " + quartoId));
@@ -86,16 +102,23 @@ public class ReservaService {
 
         reserva.setCliente(clientById.get());
 
-        Reserva novaReserva = reservaRepository.save(reserva);
+        Reserva novaReserva;
+        if (id != null) {
+            // Atualizar reserva existente
+            Reserva reservaExistente = reservaRepository.findById(id)
+                    .orElseThrow(() -> new RuntimeException("Reserva não encontrada com o ID: " + id));
+            reservaExistente.setDataEntrada(reservaDTO.getDataEntrada());
+            reservaExistente.setDataSaida(reservaDTO.getDataSaida());
+            reservaExistente.setQuartos(reserva.getQuartos());
+            reservaExistente.setServicosOpcionais(reserva.getServicosOpcionais());
+            reservaExistente.setValorTotal(reserva.getValorTotal());
+            novaReserva = reservaRepository.save(reservaExistente);
+        } else {
+            // Criar nova reserva
+            novaReserva = reservaRepository.save(reserva);
+        }
+
         return reservaMapper.reservaToReservaDTO(novaReserva);
-    }
-
-    public ReservaDTO atualizarReserva(Long id, ReservaDTO reservaDTO) {
-        Reserva reservaExistente = reservaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Reserva não encontrada com o ID: " + id));
-
-        Reserva reservaAtualizada = reservaRepository.save(reservaExistente);
-        return reservaMapper.reservaToReservaDTO(reservaAtualizada);
     }
 
     public void cancelarReserva(Long id) {

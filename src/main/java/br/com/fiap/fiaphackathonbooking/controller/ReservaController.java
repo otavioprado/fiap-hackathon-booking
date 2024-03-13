@@ -20,13 +20,13 @@ public class ReservaController {
 
     @PostMapping
     public ResponseEntity<ReservaDTO> criarReserva(@RequestBody ReservaDTO reservaDTO) {
-        ReservaDTO novaReserva = reservaService.criarReserva(reservaDTO);
+        ReservaDTO novaReserva = reservaService.salvarReserva(null, reservaDTO);
         return new ResponseEntity<>(novaReserva, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<ReservaDTO> atualizarReserva(@PathVariable Long id, @RequestBody ReservaDTO reservaDTO) {
-        ReservaDTO reservaAtualizada = reservaService.atualizarReserva(id, reservaDTO);
+        ReservaDTO reservaAtualizada = reservaService.salvarReserva(id, reservaDTO);
         return ResponseEntity.ok(reservaAtualizada);
     }
 
