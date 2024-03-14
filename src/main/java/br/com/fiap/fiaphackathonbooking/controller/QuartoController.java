@@ -16,7 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/quartos")
 @AllArgsConstructor
-@Tag(name = "Quarto", description = "API de Quartos")
+@Tag(name = "Quartos", description = "API de Quartos")
 public class QuartoController {
 
     private final QuartoService quartoService;
