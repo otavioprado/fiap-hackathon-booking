@@ -1,8 +1,8 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "Swagger OpenApi",
-    "description": "fiap-hackathon-grupo-12",
+    "title": "HACKATHON FIAP - BOOKING - Grupo-12",
+    "description": "Este projeto é um sistema de gestão de hospitalidade, especificamente um sistema de reservas para hotéis. Ele permite aos usuários agendar, buscar a melhor solução custo-benefício e pré-reservar serviços e opções.",
     "version": "1"
   },
   "servers": [
@@ -11,12 +11,39 @@
       "description": "Generated server url"
     }
   ],
+  "tags": [
+    {
+      "name": "Clientes",
+      "description": "API de Clientes"
+    },
+    {
+      "name": "Localidades",
+      "description": "API de Localidades"
+    },
+    {
+      "name": "Serviços Opcionais",
+      "description": "API de Serviços Opcionais"
+    },
+    {
+      "name": "Reservas",
+      "description": "API de Reservas"
+    },
+    {
+      "name": "Quartos",
+      "description": "API de Quartos"
+    },
+    {
+      "name": "Prédios",
+      "description": "API de Prédios"
+    }
+  ],
   "paths": {
     "/api/servicos-opcionais/{id}": {
       "get": {
         "tags": [
-          "servico-opcional-controller"
+          "Serviços Opcionais"
         ],
+        "summary": "Busca um Serviço Opcional por Id",
         "operationId": "buscarPorId",
         "parameters": [
           {
@@ -30,8 +57,48 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "Serviço Opcional encontrado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServicoOpcionalDTO"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Serviço Opcional adicionado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServicoOpcionalDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro na requisição",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServicoOpcionalDTO"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Serviço Opcional não encontrado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServicoOpcionalDTO"
+                }
+              }
+            }
+          },
           "422": {
-            "description": "Unprocessable Entity",
+            "description": "Erro de validação",
             "content": {
               "*/*": {
                 "schema": {
@@ -40,8 +107,8 @@
               }
             }
           },
-          "200": {
-            "description": "OK",
+          "500": {
+            "description": "Erro interno no servidor",
             "content": {
               "*/*": {
                 "schema": {
@@ -54,8 +121,9 @@
       },
       "put": {
         "tags": [
-          "servico-opcional-controller"
+          "Serviços Opcionais"
         ],
+        "summary": "Atualiza um Serviço Opcional",
         "operationId": "atualizarServicoOpcional",
         "parameters": [
           {
@@ -79,8 +147,48 @@
           "required": true
         },
         "responses": {
+          "200": {
+            "description": "Serviço Opcional encontrado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServicoOpcionalDTO"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Serviço Opcional adicionado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServicoOpcionalDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro na requisição",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServicoOpcionalDTO"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Serviço Opcional não encontrado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServicoOpcionalDTO"
+                }
+              }
+            }
+          },
           "422": {
-            "description": "Unprocessable Entity",
+            "description": "Erro de validação",
             "content": {
               "*/*": {
                 "schema": {
@@ -89,8 +197,8 @@
               }
             }
           },
-          "200": {
-            "description": "OK",
+          "500": {
+            "description": "Erro interno no servidor",
             "content": {
               "*/*": {
                 "schema": {
@@ -103,8 +211,9 @@
       },
       "delete": {
         "tags": [
-          "servico-opcional-controller"
+          "Serviços Opcionais"
         ],
+        "summary": "Deleta um Serviço Opcional",
         "operationId": "removerServicoOpcional",
         "parameters": [
           {
@@ -118,8 +227,20 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "Serviço Opcional encontrado"
+          },
+          "201": {
+            "description": "Serviço Opcional adicionado"
+          },
+          "400": {
+            "description": "Erro na requisição"
+          },
+          "404": {
+            "description": "Serviço Opcional não encontrado"
+          },
           "422": {
-            "description": "Unprocessable Entity",
+            "description": "Erro de validação",
             "content": {
               "*/*": {
                 "schema": {
@@ -128,8 +249,8 @@
               }
             }
           },
-          "200": {
-            "description": "OK"
+          "500": {
+            "description": "Erro interno no servidor"
           }
         }
       }
@@ -137,8 +258,9 @@
     "/api/reservas/{id}": {
       "get": {
         "tags": [
-          "reserva-controller"
+          "Reservas"
         ],
+        "summary": "Busca uma Reserva por id",
         "operationId": "buscarReservaPorId",
         "parameters": [
           {
@@ -152,8 +274,48 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "Reserva encontrada",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReservaDTO"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Reserva adicionada",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReservaDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro na requisição",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReservaDTO"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Reserva não encontrada",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReservaDTO"
+                }
+              }
+            }
+          },
           "422": {
-            "description": "Unprocessable Entity",
+            "description": "Erro de validação",
             "content": {
               "*/*": {
                 "schema": {
@@ -162,8 +324,8 @@
               }
             }
           },
-          "200": {
-            "description": "OK",
+          "500": {
+            "description": "Erro interno no servidor",
             "content": {
               "*/*": {
                 "schema": {
@@ -176,8 +338,9 @@
       },
       "put": {
         "tags": [
-          "reserva-controller"
+          "Reservas"
         ],
+        "summary": "Atualiza uma Reserva",
         "operationId": "atualizarReserva",
         "parameters": [
           {
@@ -201,8 +364,48 @@
           "required": true
         },
         "responses": {
+          "200": {
+            "description": "Reserva encontrada",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReservaDTO"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Reserva adicionada",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReservaDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro na requisição",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReservaDTO"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Reserva não encontrada",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReservaDTO"
+                }
+              }
+            }
+          },
           "422": {
-            "description": "Unprocessable Entity",
+            "description": "Erro de validação",
             "content": {
               "*/*": {
                 "schema": {
@@ -211,8 +414,8 @@
               }
             }
           },
-          "200": {
-            "description": "OK",
+          "500": {
+            "description": "Erro interno no servidor",
             "content": {
               "*/*": {
                 "schema": {
@@ -225,8 +428,9 @@
       },
       "delete": {
         "tags": [
-          "reserva-controller"
+          "Reservas"
         ],
+        "summary": "Deleta uma Reserva",
         "operationId": "deletarReserva",
         "parameters": [
           {
@@ -240,8 +444,20 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "Reserva encontrada"
+          },
+          "201": {
+            "description": "Reserva adicionada"
+          },
+          "400": {
+            "description": "Erro na requisição"
+          },
+          "404": {
+            "description": "Reserva não encontrada"
+          },
           "422": {
-            "description": "Unprocessable Entity",
+            "description": "Erro de validação",
             "content": {
               "*/*": {
                 "schema": {
@@ -250,8 +466,8 @@
               }
             }
           },
-          "200": {
-            "description": "OK"
+          "500": {
+            "description": "Erro interno no servidor"
           }
         }
       }
@@ -259,8 +475,9 @@
     "/api/quartos/{id}": {
       "get": {
         "tags": [
-          "quarto-controller"
+          "Quartos"
         ],
+        "summary": "Busca um Quarto por id",
         "operationId": "buscarQuartoPorId",
         "parameters": [
           {
@@ -274,8 +491,48 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "Quarto encontrado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/QuartoDTO"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Quarto adicionado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/QuartoDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro na requisição",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/QuartoDTO"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Quarto não encontrado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/QuartoDTO"
+                }
+              }
+            }
+          },
           "422": {
-            "description": "Unprocessable Entity",
+            "description": "Erro de validação",
             "content": {
               "*/*": {
                 "schema": {
@@ -284,8 +541,8 @@
               }
             }
           },
-          "200": {
-            "description": "OK",
+          "500": {
+            "description": "Erro interno no servidor",
             "content": {
               "*/*": {
                 "schema": {
@@ -298,8 +555,9 @@
       },
       "put": {
         "tags": [
-          "quarto-controller"
+          "Quartos"
         ],
+        "summary": "Atualiza um Quarto",
         "operationId": "atualizarQuarto",
         "parameters": [
           {
@@ -323,8 +581,48 @@
           "required": true
         },
         "responses": {
+          "200": {
+            "description": "Quarto encontrado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/QuartoDTO"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Quarto adicionado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/QuartoDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro na requisição",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/QuartoDTO"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Quarto não encontrado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/QuartoDTO"
+                }
+              }
+            }
+          },
           "422": {
-            "description": "Unprocessable Entity",
+            "description": "Erro de validação",
             "content": {
               "*/*": {
                 "schema": {
@@ -333,8 +631,8 @@
               }
             }
           },
-          "200": {
-            "description": "OK",
+          "500": {
+            "description": "Erro interno no servidor",
             "content": {
               "*/*": {
                 "schema": {
@@ -347,8 +645,9 @@
       },
       "delete": {
         "tags": [
-          "quarto-controller"
+          "Quartos"
         ],
+        "summary": "Deleta um Quarto",
         "operationId": "deletarQuarto",
         "parameters": [
           {
@@ -362,8 +661,20 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "Quarto encontrado"
+          },
+          "201": {
+            "description": "Quarto adicionado"
+          },
+          "400": {
+            "description": "Erro na requisição"
+          },
+          "404": {
+            "description": "Quarto não encontrado"
+          },
           "422": {
-            "description": "Unprocessable Entity",
+            "description": "Erro de validação",
             "content": {
               "*/*": {
                 "schema": {
@@ -372,8 +683,8 @@
               }
             }
           },
-          "200": {
-            "description": "OK"
+          "500": {
+            "description": "Erro interno no servidor"
           }
         }
       }
@@ -381,8 +692,9 @@
     "/api/predios/{id}": {
       "get": {
         "tags": [
-          "predio-controller"
+          "Prédios"
         ],
+        "summary": "Busca um Prédio por id",
         "operationId": "buscarPredioPorId",
         "parameters": [
           {
@@ -396,8 +708,48 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "Prédio encontrado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PredioDTO"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Prédio adicionado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PredioDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro na requisição",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PredioDTO"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Prédio não encontrado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PredioDTO"
+                }
+              }
+            }
+          },
           "422": {
-            "description": "Unprocessable Entity",
+            "description": "Erro de validação",
             "content": {
               "*/*": {
                 "schema": {
@@ -406,8 +758,8 @@
               }
             }
           },
-          "200": {
-            "description": "OK",
+          "500": {
+            "description": "Erro interno no servidor",
             "content": {
               "*/*": {
                 "schema": {
@@ -420,8 +772,9 @@
       },
       "put": {
         "tags": [
-          "predio-controller"
+          "Prédios"
         ],
+        "summary": "Atualiza um Prédio",
         "operationId": "atualizarPredio",
         "parameters": [
           {
@@ -445,8 +798,48 @@
           "required": true
         },
         "responses": {
+          "200": {
+            "description": "Prédio encontrado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PredioDTO"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Prédio adicionado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PredioDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro na requisição",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PredioDTO"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Prédio não encontrado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PredioDTO"
+                }
+              }
+            }
+          },
           "422": {
-            "description": "Unprocessable Entity",
+            "description": "Erro de validação",
             "content": {
               "*/*": {
                 "schema": {
@@ -455,8 +848,8 @@
               }
             }
           },
-          "200": {
-            "description": "OK",
+          "500": {
+            "description": "Erro interno no servidor",
             "content": {
               "*/*": {
                 "schema": {
@@ -469,8 +862,9 @@
       },
       "delete": {
         "tags": [
-          "predio-controller"
+          "Prédios"
         ],
+        "summary": "Deleta um Prédio",
         "operationId": "deletarPredio",
         "parameters": [
           {
@@ -484,8 +878,20 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "Prédio encontrado"
+          },
+          "201": {
+            "description": "Prédio adicionado"
+          },
+          "400": {
+            "description": "Erro na requisição"
+          },
+          "404": {
+            "description": "Prédio não encontrado"
+          },
           "422": {
-            "description": "Unprocessable Entity",
+            "description": "Erro de validação",
             "content": {
               "*/*": {
                 "schema": {
@@ -494,8 +900,8 @@
               }
             }
           },
-          "200": {
-            "description": "OK"
+          "500": {
+            "description": "Erro interno no servidor"
           }
         }
       }
@@ -503,8 +909,9 @@
     "/api/localidades/{id}": {
       "get": {
         "tags": [
-          "localidade-controller"
+          "Localidades"
         ],
+        "summary": "Busca uma Localidade por id",
         "operationId": "buscarLocalidadePorId",
         "parameters": [
           {
@@ -518,8 +925,48 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "Localidade encontrada",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocalidadeDTO"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Localidade adicionada",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocalidadeDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro na requisição",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocalidadeDTO"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Localidade não encontrada",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocalidadeDTO"
+                }
+              }
+            }
+          },
           "422": {
-            "description": "Unprocessable Entity",
+            "description": "Erro de validação",
             "content": {
               "*/*": {
                 "schema": {
@@ -528,8 +975,8 @@
               }
             }
           },
-          "200": {
-            "description": "OK",
+          "500": {
+            "description": "Erro interno no servidor",
             "content": {
               "*/*": {
                 "schema": {
@@ -542,8 +989,9 @@
       },
       "put": {
         "tags": [
-          "localidade-controller"
+          "Localidades"
         ],
+        "summary": "Atualiza uma Localidade",
         "operationId": "atualizarLocalidade",
         "parameters": [
           {
@@ -567,8 +1015,48 @@
           "required": true
         },
         "responses": {
+          "200": {
+            "description": "Localidade encontrada",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocalidadeDTO"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Localidade adicionada",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocalidadeDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro na requisição",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocalidadeDTO"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Localidade não encontrada",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocalidadeDTO"
+                }
+              }
+            }
+          },
           "422": {
-            "description": "Unprocessable Entity",
+            "description": "Erro de validação",
             "content": {
               "*/*": {
                 "schema": {
@@ -577,8 +1065,8 @@
               }
             }
           },
-          "200": {
-            "description": "OK",
+          "500": {
+            "description": "Erro interno no servidor",
             "content": {
               "*/*": {
                 "schema": {
@@ -591,8 +1079,9 @@
       },
       "delete": {
         "tags": [
-          "localidade-controller"
+          "Localidades"
         ],
+        "summary": "Deleta uma Localidade",
         "operationId": "deletarLocalidade",
         "parameters": [
           {
@@ -606,8 +1095,20 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "Localidade encontrada"
+          },
+          "201": {
+            "description": "Localidade adicionada"
+          },
+          "400": {
+            "description": "Erro na requisição"
+          },
+          "404": {
+            "description": "Localidade não encontrada"
+          },
           "422": {
-            "description": "Unprocessable Entity",
+            "description": "Erro de validação",
             "content": {
               "*/*": {
                 "schema": {
@@ -616,8 +1117,8 @@
               }
             }
           },
-          "200": {
-            "description": "OK"
+          "500": {
+            "description": "Erro interno no servidor"
           }
         }
       }
@@ -625,8 +1126,9 @@
     "/api/clientes/{id}": {
       "get": {
         "tags": [
-          "cliente-controller"
+          "Clientes"
         ],
+        "summary": "Busca um Cliente por id",
         "operationId": "buscarClientePorId",
         "parameters": [
           {
@@ -640,8 +1142,48 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "Cliente encontrado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClienteDTO"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Cliente adicionado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClienteDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro na requisição",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClienteDTO"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Cliente não encontrado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClienteDTO"
+                }
+              }
+            }
+          },
           "422": {
-            "description": "Unprocessable Entity",
+            "description": "Erro de validação",
             "content": {
               "*/*": {
                 "schema": {
@@ -650,8 +1192,8 @@
               }
             }
           },
-          "200": {
-            "description": "OK",
+          "500": {
+            "description": "Erro interno no servidor",
             "content": {
               "*/*": {
                 "schema": {
@@ -664,8 +1206,9 @@
       },
       "put": {
         "tags": [
-          "cliente-controller"
+          "Clientes"
         ],
+        "summary": "Atualiza um Cliente",
         "operationId": "atualizarCliente",
         "parameters": [
           {
@@ -689,8 +1232,48 @@
           "required": true
         },
         "responses": {
+          "200": {
+            "description": "Cliente encontrado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClienteDTO"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Cliente adicionado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClienteDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro na requisição",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClienteDTO"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Cliente não encontrado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClienteDTO"
+                }
+              }
+            }
+          },
           "422": {
-            "description": "Unprocessable Entity",
+            "description": "Erro de validação",
             "content": {
               "*/*": {
                 "schema": {
@@ -699,8 +1282,8 @@
               }
             }
           },
-          "200": {
-            "description": "OK",
+          "500": {
+            "description": "Erro interno no servidor",
             "content": {
               "*/*": {
                 "schema": {
@@ -713,8 +1296,9 @@
       },
       "delete": {
         "tags": [
-          "cliente-controller"
+          "Clientes"
         ],
+        "summary": "Deleta um Cliente",
         "operationId": "deletarCliente",
         "parameters": [
           {
@@ -728,8 +1312,48 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "Cliente encontrado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Cliente adicionado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro na requisição",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Cliente não encontrado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
           "422": {
-            "description": "Unprocessable Entity",
+            "description": "Erro de validação",
             "content": {
               "*/*": {
                 "schema": {
@@ -738,8 +1362,8 @@
               }
             }
           },
-          "200": {
-            "description": "OK",
+          "500": {
+            "description": "Erro interno no servidor",
             "content": {
               "*/*": {
                 "schema": {
@@ -754,12 +1378,65 @@
     "/api/servicos-opcionais": {
       "get": {
         "tags": [
-          "servico-opcional-controller"
+          "Serviços Opcionais"
         ],
+        "summary": "Lista todos os Serviços Opcionais",
         "operationId": "listarTodos",
         "responses": {
+          "200": {
+            "description": "Serviço Opcional encontrado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ServicoOpcionalDTO"
+                  }
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Serviço Opcional adicionado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ServicoOpcionalDTO"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro na requisição",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ServicoOpcionalDTO"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Serviço Opcional não encontrado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ServicoOpcionalDTO"
+                  }
+                }
+              }
+            }
+          },
           "422": {
-            "description": "Unprocessable Entity",
+            "description": "Erro de validação",
             "content": {
               "*/*": {
                 "schema": {
@@ -768,8 +1445,8 @@
               }
             }
           },
-          "200": {
-            "description": "OK",
+          "500": {
+            "description": "Erro interno no servidor",
             "content": {
               "*/*": {
                 "schema": {
@@ -785,8 +1462,9 @@
       },
       "post": {
         "tags": [
-          "servico-opcional-controller"
+          "Serviços Opcionais"
         ],
+        "summary": "Adiciona um Serviço Opcional",
         "operationId": "adicionarServicoOpcional",
         "requestBody": {
           "content": {
@@ -799,8 +1477,48 @@
           "required": true
         },
         "responses": {
+          "200": {
+            "description": "Serviço Opcional encontrado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServicoOpcionalDTO"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Serviço Opcional adicionado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServicoOpcionalDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro na requisição",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServicoOpcionalDTO"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Serviço Opcional não encontrado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServicoOpcionalDTO"
+                }
+              }
+            }
+          },
           "422": {
-            "description": "Unprocessable Entity",
+            "description": "Erro de validação",
             "content": {
               "*/*": {
                 "schema": {
@@ -809,8 +1527,8 @@
               }
             }
           },
-          "200": {
-            "description": "OK",
+          "500": {
+            "description": "Erro interno no servidor",
             "content": {
               "*/*": {
                 "schema": {
@@ -825,12 +1543,53 @@
     "/api/reservas": {
       "get": {
         "tags": [
-          "reserva-controller"
+          "Reservas"
         ],
+        "summary": "Lista todas as Reservas",
         "operationId": "listarReservas",
         "responses": {
+          "200": {
+            "description": "Reserva encontrada",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Reserva adicionada",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro na requisição",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Reserva não encontrada",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
           "422": {
-            "description": "Unprocessable Entity",
+            "description": "Erro de validação",
             "content": {
               "*/*": {
                 "schema": {
@@ -839,8 +1598,8 @@
               }
             }
           },
-          "200": {
-            "description": "OK",
+          "500": {
+            "description": "Erro interno no servidor",
             "content": {
               "*/*": {
                 "schema": {
@@ -853,8 +1612,9 @@
       },
       "post": {
         "tags": [
-          "reserva-controller"
+          "Reservas"
         ],
+        "summary": "Cria uma nova Reserva",
         "operationId": "criarReserva",
         "requestBody": {
           "content": {
@@ -867,8 +1627,48 @@
           "required": true
         },
         "responses": {
+          "200": {
+            "description": "Reserva encontrada",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReservaDTO"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Reserva adicionada",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReservaDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro na requisição",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReservaDTO"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Reserva não encontrada",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReservaDTO"
+                }
+              }
+            }
+          },
           "422": {
-            "description": "Unprocessable Entity",
+            "description": "Erro de validação",
             "content": {
               "*/*": {
                 "schema": {
@@ -877,8 +1677,8 @@
               }
             }
           },
-          "200": {
-            "description": "OK",
+          "500": {
+            "description": "Erro interno no servidor",
             "content": {
               "*/*": {
                 "schema": {
@@ -893,8 +1693,9 @@
     "/api/reservas/{id}/remover-item/{idItem}": {
       "post": {
         "tags": [
-          "reserva-controller"
+          "Reservas"
         ],
+        "summary": "Remove um item de uma Reserva",
         "operationId": "removeItemReserva",
         "parameters": [
           {
@@ -917,8 +1718,20 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "Reserva encontrada"
+          },
+          "201": {
+            "description": "Reserva adicionada"
+          },
+          "400": {
+            "description": "Erro na requisição"
+          },
+          "404": {
+            "description": "Reserva não encontrada"
+          },
           "422": {
-            "description": "Unprocessable Entity",
+            "description": "Erro de validação",
             "content": {
               "*/*": {
                 "schema": {
@@ -927,8 +1740,8 @@
               }
             }
           },
-          "200": {
-            "description": "OK"
+          "500": {
+            "description": "Erro interno no servidor"
           }
         }
       }
@@ -936,8 +1749,9 @@
     "/api/reservas/{id}/enviar-email": {
       "post": {
         "tags": [
-          "reserva-controller"
+          "Reservas"
         ],
+        "summary": "Envia um E-mail de Confirmação para o Cliente",
         "operationId": "enviarEmailConfirmacao",
         "parameters": [
           {
@@ -951,8 +1765,48 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "Reserva encontrada",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Reserva adicionada",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro na requisição",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Reserva não encontrada",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
           "422": {
-            "description": "Unprocessable Entity",
+            "description": "Erro de validação",
             "content": {
               "*/*": {
                 "schema": {
@@ -961,8 +1815,8 @@
               }
             }
           },
-          "200": {
-            "description": "OK",
+          "500": {
+            "description": "Erro interno no servidor",
             "content": {
               "*/*": {
                 "schema": {
@@ -977,8 +1831,9 @@
     "/api/reservas/{id}/confirmar": {
       "post": {
         "tags": [
-          "reserva-controller"
+          "Reservas"
         ],
+        "summary": "Confirma uma Reserva",
         "operationId": "confirmarReserva",
         "parameters": [
           {
@@ -992,8 +1847,20 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "Reserva encontrada"
+          },
+          "201": {
+            "description": "Reserva adicionada"
+          },
+          "400": {
+            "description": "Erro na requisição"
+          },
+          "404": {
+            "description": "Reserva não encontrada"
+          },
           "422": {
-            "description": "Unprocessable Entity",
+            "description": "Erro de validação",
             "content": {
               "*/*": {
                 "schema": {
@@ -1002,8 +1869,8 @@
               }
             }
           },
-          "200": {
-            "description": "OK"
+          "500": {
+            "description": "Erro interno no servidor"
           }
         }
       }
@@ -1011,8 +1878,9 @@
     "/api/reservas/{id}/cancelar": {
       "post": {
         "tags": [
-          "reserva-controller"
+          "Reservas"
         ],
+        "summary": "Cancela uma Reserva",
         "operationId": "cancelarReserva",
         "parameters": [
           {
@@ -1026,8 +1894,20 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "Reserva encontrada"
+          },
+          "201": {
+            "description": "Reserva adicionada"
+          },
+          "400": {
+            "description": "Erro na requisição"
+          },
+          "404": {
+            "description": "Reserva não encontrada"
+          },
           "422": {
-            "description": "Unprocessable Entity",
+            "description": "Erro de validação",
             "content": {
               "*/*": {
                 "schema": {
@@ -1036,8 +1916,8 @@
               }
             }
           },
-          "200": {
-            "description": "OK"
+          "500": {
+            "description": "Erro interno no servidor"
           }
         }
       }
@@ -1045,8 +1925,9 @@
     "/api/reservas/{id}/adicionar-item/{idItem}": {
       "post": {
         "tags": [
-          "reserva-controller"
+          "Reservas"
         ],
+        "summary": "Adiciona um item a uma Reserva",
         "operationId": "adicionarItemReserva",
         "parameters": [
           {
@@ -1069,8 +1950,20 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "Reserva encontrada"
+          },
+          "201": {
+            "description": "Reserva adicionada"
+          },
+          "400": {
+            "description": "Erro na requisição"
+          },
+          "404": {
+            "description": "Reserva não encontrada"
+          },
           "422": {
-            "description": "Unprocessable Entity",
+            "description": "Erro de validação",
             "content": {
               "*/*": {
                 "schema": {
@@ -1079,8 +1972,8 @@
               }
             }
           },
-          "200": {
-            "description": "OK"
+          "500": {
+            "description": "Erro interno no servidor"
           }
         }
       }
@@ -1088,12 +1981,65 @@
     "/api/quartos": {
       "get": {
         "tags": [
-          "quarto-controller"
+          "Quartos"
         ],
+        "summary": "Lista todos os Quartos",
         "operationId": "listarTodosOsQuartos",
         "responses": {
+          "200": {
+            "description": "Quarto encontrado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/QuartoDTO"
+                  }
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Quarto adicionado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/QuartoDTO"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro na requisição",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/QuartoDTO"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Quarto não encontrado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/QuartoDTO"
+                  }
+                }
+              }
+            }
+          },
           "422": {
-            "description": "Unprocessable Entity",
+            "description": "Erro de validação",
             "content": {
               "*/*": {
                 "schema": {
@@ -1102,8 +2048,8 @@
               }
             }
           },
-          "200": {
-            "description": "OK",
+          "500": {
+            "description": "Erro interno no servidor",
             "content": {
               "*/*": {
                 "schema": {
@@ -1119,8 +2065,9 @@
       },
       "post": {
         "tags": [
-          "quarto-controller"
+          "Quartos"
         ],
+        "summary": "Adiciona um Quarto",
         "operationId": "adicionarQuarto",
         "requestBody": {
           "content": {
@@ -1133,8 +2080,48 @@
           "required": true
         },
         "responses": {
+          "200": {
+            "description": "Quarto encontrado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/QuartoDTO"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Quarto adicionado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/QuartoDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro na requisição",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/QuartoDTO"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Quarto não encontrado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/QuartoDTO"
+                }
+              }
+            }
+          },
           "422": {
-            "description": "Unprocessable Entity",
+            "description": "Erro de validação",
             "content": {
               "*/*": {
                 "schema": {
@@ -1143,8 +2130,8 @@
               }
             }
           },
-          "200": {
-            "description": "OK",
+          "500": {
+            "description": "Erro interno no servidor",
             "content": {
               "*/*": {
                 "schema": {
@@ -1159,8 +2146,9 @@
     "/api/quartos/{quartoId}/admin/desbloquear": {
       "post": {
         "tags": [
-          "quarto-controller"
+          "Quartos"
         ],
+        "summary": "Desbloqueia um Quarto",
         "operationId": "desbloquearQuartoPorAdmin",
         "parameters": [
           {
@@ -1174,8 +2162,48 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "Quarto encontrado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/QuartoDTO"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Quarto adicionado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/QuartoDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro na requisição",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/QuartoDTO"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Quarto não encontrado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/QuartoDTO"
+                }
+              }
+            }
+          },
           "422": {
-            "description": "Unprocessable Entity",
+            "description": "Erro de validação",
             "content": {
               "*/*": {
                 "schema": {
@@ -1184,8 +2212,8 @@
               }
             }
           },
-          "200": {
-            "description": "OK",
+          "500": {
+            "description": "Erro interno no servidor",
             "content": {
               "*/*": {
                 "schema": {
@@ -1200,8 +2228,9 @@
     "/api/quartos/{quartoId}/admin/bloquear": {
       "post": {
         "tags": [
-          "quarto-controller"
+          "Quartos"
         ],
+        "summary": "Bloqueia um Quarto",
         "operationId": "bloquearQuartoPorAdmin",
         "parameters": [
           {
@@ -1215,8 +2244,48 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "Quarto encontrado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/QuartoDTO"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Quarto adicionado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/QuartoDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro na requisição",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/QuartoDTO"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Quarto não encontrado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/QuartoDTO"
+                }
+              }
+            }
+          },
           "422": {
-            "description": "Unprocessable Entity",
+            "description": "Erro de validação",
             "content": {
               "*/*": {
                 "schema": {
@@ -1225,8 +2294,8 @@
               }
             }
           },
-          "200": {
-            "description": "OK",
+          "500": {
+            "description": "Erro interno no servidor",
             "content": {
               "*/*": {
                 "schema": {
@@ -1241,12 +2310,65 @@
     "/api/predios": {
       "get": {
         "tags": [
-          "predio-controller"
+          "Prédios"
         ],
+        "summary": "Lista todos os Prédios",
         "operationId": "listarTodosOsPredios",
         "responses": {
+          "200": {
+            "description": "Prédio encontrado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PredioDTO"
+                  }
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Prédio adicionado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PredioDTO"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro na requisição",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PredioDTO"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Prédio não encontrado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PredioDTO"
+                  }
+                }
+              }
+            }
+          },
           "422": {
-            "description": "Unprocessable Entity",
+            "description": "Erro de validação",
             "content": {
               "*/*": {
                 "schema": {
@@ -1255,8 +2377,8 @@
               }
             }
           },
-          "200": {
-            "description": "OK",
+          "500": {
+            "description": "Erro interno no servidor",
             "content": {
               "*/*": {
                 "schema": {
@@ -1272,8 +2394,9 @@
       },
       "post": {
         "tags": [
-          "predio-controller"
+          "Prédios"
         ],
+        "summary": "Adiciona um Prédio",
         "operationId": "adicionarPredio",
         "requestBody": {
           "content": {
@@ -1286,8 +2409,48 @@
           "required": true
         },
         "responses": {
+          "200": {
+            "description": "Prédio encontrado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PredioDTO"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Prédio adicionado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PredioDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro na requisição",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PredioDTO"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Prédio não encontrado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PredioDTO"
+                }
+              }
+            }
+          },
           "422": {
-            "description": "Unprocessable Entity",
+            "description": "Erro de validação",
             "content": {
               "*/*": {
                 "schema": {
@@ -1296,8 +2459,8 @@
               }
             }
           },
-          "200": {
-            "description": "OK",
+          "500": {
+            "description": "Erro interno no servidor",
             "content": {
               "*/*": {
                 "schema": {
@@ -1312,12 +2475,65 @@
     "/api/localidades": {
       "get": {
         "tags": [
-          "localidade-controller"
+          "Localidades"
         ],
+        "summary": "Lista todas as Localidades",
         "operationId": "listarTodasAsLocalidades",
         "responses": {
+          "200": {
+            "description": "Localidade encontrada",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LocalidadeDTO"
+                  }
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Localidade adicionada",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LocalidadeDTO"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro na requisição",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LocalidadeDTO"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Localidade não encontrada",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LocalidadeDTO"
+                  }
+                }
+              }
+            }
+          },
           "422": {
-            "description": "Unprocessable Entity",
+            "description": "Erro de validação",
             "content": {
               "*/*": {
                 "schema": {
@@ -1326,8 +2542,8 @@
               }
             }
           },
-          "200": {
-            "description": "OK",
+          "500": {
+            "description": "Erro interno no servidor",
             "content": {
               "*/*": {
                 "schema": {
@@ -1343,8 +2559,9 @@
       },
       "post": {
         "tags": [
-          "localidade-controller"
+          "Localidades"
         ],
+        "summary": "Adiciona uma Localidade",
         "operationId": "adicionarLocalidade",
         "requestBody": {
           "content": {
@@ -1357,8 +2574,48 @@
           "required": true
         },
         "responses": {
+          "200": {
+            "description": "Localidade encontrada",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocalidadeDTO"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Localidade adicionada",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocalidadeDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro na requisição",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocalidadeDTO"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Localidade não encontrada",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocalidadeDTO"
+                }
+              }
+            }
+          },
           "422": {
-            "description": "Unprocessable Entity",
+            "description": "Erro de validação",
             "content": {
               "*/*": {
                 "schema": {
@@ -1367,8 +2624,8 @@
               }
             }
           },
-          "200": {
-            "description": "OK",
+          "500": {
+            "description": "Erro interno no servidor",
             "content": {
               "*/*": {
                 "schema": {
@@ -1383,12 +2640,65 @@
     "/api/clientes": {
       "get": {
         "tags": [
-          "cliente-controller"
+          "Clientes"
         ],
+        "summary": "Lista todos os Clientes",
         "operationId": "listarTodosClientes",
         "responses": {
+          "200": {
+            "description": "Cliente encontrado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClienteDTO"
+                  }
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Cliente adicionado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClienteDTO"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro na requisição",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClienteDTO"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Cliente não encontrado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClienteDTO"
+                  }
+                }
+              }
+            }
+          },
           "422": {
-            "description": "Unprocessable Entity",
+            "description": "Erro de validação",
             "content": {
               "*/*": {
                 "schema": {
@@ -1397,8 +2707,8 @@
               }
             }
           },
-          "200": {
-            "description": "OK",
+          "500": {
+            "description": "Erro interno no servidor",
             "content": {
               "*/*": {
                 "schema": {
@@ -1414,8 +2724,9 @@
       },
       "post": {
         "tags": [
-          "cliente-controller"
+          "Clientes"
         ],
+        "summary": "Adiciona um Cliente",
         "operationId": "adicionarCliente",
         "requestBody": {
           "content": {
@@ -1428,8 +2739,48 @@
           "required": true
         },
         "responses": {
+          "200": {
+            "description": "Cliente encontrado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClienteDTO"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Cliente adicionado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClienteDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro na requisição",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClienteDTO"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Cliente não encontrado",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClienteDTO"
+                }
+              }
+            }
+          },
           "422": {
-            "description": "Unprocessable Entity",
+            "description": "Erro de validação",
             "content": {
               "*/*": {
                 "schema": {
@@ -1438,8 +2789,8 @@
               }
             }
           },
-          "200": {
-            "description": "OK",
+          "500": {
+            "description": "Erro interno no servidor",
             "content": {
               "*/*": {
                 "schema": {
