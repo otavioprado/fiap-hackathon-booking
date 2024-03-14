@@ -3,6 +3,7 @@ package br.com.fiap.fiaphackathonbooking.controller;
 import br.com.fiap.fiaphackathonbooking.dto.ServicoOpcionalDTO;
 import br.com.fiap.fiaphackathonbooking.model.ServicoOpcional;
 import br.com.fiap.fiaphackathonbooking.service.ServicoOpcionalService;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -17,12 +18,13 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api/servicos-opcionais")
 @AllArgsConstructor
-@Tag(name = "Serviço Opcional", description = "API de Serviços Opcionais")
+@Tag(name = "Serviços Opcionais", description = "API de Serviços Opcionais")
 public class ServicoOpcionalController {
 
     private ServicoOpcionalService service;
     private ModelMapper modelMapper;
 
+    @Operation(summary = "Lista todos os Serviços Opcionais")
     @GetMapping
     public ResponseEntity<List<ServicoOpcionalDTO>> listarTodos() {
         List<ServicoOpcional> servicos = service.listarTodos();
@@ -32,6 +34,7 @@ public class ServicoOpcionalController {
         return ResponseEntity.ok(servicosDTO);
     }
 
+    @Operation(summary = "Adiciona um Serviço Opcional")
     @PostMapping
     public ResponseEntity<ServicoOpcionalDTO> adicionarServicoOpcional(@RequestBody @Valid ServicoOpcionalDTO servicoOpcionalDTO) {
         ServicoOpcional servicoOpcional = modelMapper.map(servicoOpcionalDTO, ServicoOpcional.class);
@@ -40,6 +43,7 @@ public class ServicoOpcionalController {
         return new ResponseEntity<>(novoServicoDTO, HttpStatus.CREATED);
     }
 
+    @Operation(summary = "Atualiza um Serviço Opcional")
     @PutMapping("/{id}")
     public ResponseEntity<ServicoOpcionalDTO> atualizarServicoOpcional(@PathVariable Long id, @RequestBody @Valid ServicoOpcionalDTO servicoOpcionalDTO) {
         ServicoOpcional servicoOpcional = modelMapper.map(servicoOpcionalDTO, ServicoOpcional.class);
@@ -48,12 +52,14 @@ public class ServicoOpcionalController {
         return ResponseEntity.ok(atualizadoServicoDTO);
     }
 
+    @Operation(summary = "Deleta um Serviço Opcional")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> removerServicoOpcional(@PathVariable Long id) {
         service.remover(id);
         return ResponseEntity.noContent().build();
     }
 
+    @Operation(summary = "Busca um Serviço Opcional por Id")
     @GetMapping("/{id}")
     public ResponseEntity<ServicoOpcionalDTO> buscarPorId(@PathVariable Long id) {
         ServicoOpcional servico = service.buscarPorId(id);
