@@ -2,6 +2,7 @@ package br.com.fiap.fiaphackathonbooking.controller;
 
 import br.com.fiap.fiaphackathonbooking.dto.LocalidadeDTO;
 import br.com.fiap.fiaphackathonbooking.service.LocalidadeService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -13,6 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/localidades")
 @AllArgsConstructor
+@Tag(name = "Localidade", description = "API de Localidades")
 public class LocalidadeController {
 
     private final LocalidadeService localidadeService;

@@ -2,6 +2,7 @@ package br.com.fiap.fiaphackathonbooking.controller;
 
 import br.com.fiap.fiaphackathonbooking.dto.PredioDTO;
 import br.com.fiap.fiaphackathonbooking.service.PredioService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -13,6 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/predios")
 @AllArgsConstructor
+@Tag(name = "Predio", description = "API de Prédios")
 public class PredioController {
 
     private final PredioService predioService;

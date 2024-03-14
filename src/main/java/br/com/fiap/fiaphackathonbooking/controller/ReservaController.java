@@ -2,6 +2,7 @@ package br.com.fiap.fiaphackathonbooking.controller;
 
 import br.com.fiap.fiaphackathonbooking.dto.ReservaDTO;
 import br.com.fiap.fiaphackathonbooking.service.ReservaService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/reservas")
+@Tag(name = "Reserva", description = "API de Reservas")
 public class ReservaController {
 
     private final ReservaService reservaService;

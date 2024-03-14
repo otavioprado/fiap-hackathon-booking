@@ -3,6 +3,7 @@ package br.com.fiap.fiaphackathonbooking.controller;
 import br.com.fiap.fiaphackathonbooking.dto.QuartoDTO;
 import br.com.fiap.fiaphackathonbooking.model.Quarto;
 import br.com.fiap.fiaphackathonbooking.service.QuartoService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/quartos")
 @AllArgsConstructor
+@Tag(name = "Quarto", description = "API de Quartos")
 public class QuartoController {
 
     private final QuartoService quartoService;

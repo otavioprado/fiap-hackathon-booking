@@ -2,6 +2,7 @@ package br.com.fiap.fiaphackathonbooking.controller;
 
 import br.com.fiap.fiaphackathonbooking.dto.ClienteDTO;
 import br.com.fiap.fiaphackathonbooking.service.ClienteService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -13,6 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/clientes")
 @AllArgsConstructor
+@Tag(name = "Cliente", description = "API de clientes")
 public class ClienteController {
     private final ClienteService clienteService;
 

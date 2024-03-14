@@ -3,6 +3,7 @@ package br.com.fiap.fiaphackathonbooking.controller;
 import br.com.fiap.fiaphackathonbooking.dto.ServicoOpcionalDTO;
 import br.com.fiap.fiaphackathonbooking.model.ServicoOpcional;
 import br.com.fiap.fiaphackathonbooking.service.ServicoOpcionalService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -16,6 +17,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api/servicos-opcionais")
 @AllArgsConstructor
+@Tag(name = "Serviço Opcional", description = "API de Serviços Opcionais")
 public class ServicoOpcionalController {
 
     private ServicoOpcionalService service;
