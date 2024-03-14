@@ -4,6 +4,8 @@ import br.com.fiap.fiaphackathonbooking.dto.ServicoOpcionalDTO;
 import br.com.fiap.fiaphackathonbooking.model.ServicoOpcional;
 import br.com.fiap.fiaphackathonbooking.service.ServicoOpcionalService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -25,6 +27,14 @@ public class ServicoOpcionalController {
     private ModelMapper modelMapper;
 
     @Operation(summary = "Lista todos os Serviços Opcionais")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Serviço Opcional encontrado"),
+            @ApiResponse(responseCode = "201", description = "Serviço Opcional adicionado"),
+            @ApiResponse(responseCode = "400", description = "Erro na requisição"),
+            @ApiResponse(responseCode = "404", description = "Serviço Opcional não encontrado"),
+            @ApiResponse(responseCode = "422", description = "Erro de validação"),
+            @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
+    })
     @GetMapping
     public ResponseEntity<List<ServicoOpcionalDTO>> listarTodos() {
         List<ServicoOpcional> servicos = service.listarTodos();
@@ -35,6 +45,14 @@ public class ServicoOpcionalController {
     }
 
     @Operation(summary = "Adiciona um Serviço Opcional")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Serviço Opcional encontrado"),
+            @ApiResponse(responseCode = "201", description = "Serviço Opcional adicionado"),
+            @ApiResponse(responseCode = "400", description = "Erro na requisição"),
+            @ApiResponse(responseCode = "404", description = "Serviço Opcional não encontrado"),
+            @ApiResponse(responseCode = "422", description = "Erro de validação"),
+            @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
+    })
     @PostMapping
     public ResponseEntity<ServicoOpcionalDTO> adicionarServicoOpcional(@RequestBody @Valid ServicoOpcionalDTO servicoOpcionalDTO) {
         ServicoOpcional servicoOpcional = modelMapper.map(servicoOpcionalDTO, ServicoOpcional.class);
@@ -44,6 +62,14 @@ public class ServicoOpcionalController {
     }
 
     @Operation(summary = "Atualiza um Serviço Opcional")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Serviço Opcional encontrado"),
+            @ApiResponse(responseCode = "201", description = "Serviço Opcional adicionado"),
+            @ApiResponse(responseCode = "400", description = "Erro na requisição"),
+            @ApiResponse(responseCode = "404", description = "Serviço Opcional não encontrado"),
+            @ApiResponse(responseCode = "422", description = "Erro de validação"),
+            @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
+    })
     @PutMapping("/{id}")
     public ResponseEntity<ServicoOpcionalDTO> atualizarServicoOpcional(@PathVariable Long id, @RequestBody @Valid ServicoOpcionalDTO servicoOpcionalDTO) {
         ServicoOpcional servicoOpcional = modelMapper.map(servicoOpcionalDTO, ServicoOpcional.class);
@@ -53,6 +79,14 @@ public class ServicoOpcionalController {
     }
 
     @Operation(summary = "Deleta um Serviço Opcional")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Serviço Opcional encontrado"),
+            @ApiResponse(responseCode = "201", description = "Serviço Opcional adicionado"),
+            @ApiResponse(responseCode = "400", description = "Erro na requisição"),
+            @ApiResponse(responseCode = "404", description = "Serviço Opcional não encontrado"),
+            @ApiResponse(responseCode = "422", description = "Erro de validação"),
+            @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
+    })
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> removerServicoOpcional(@PathVariable Long id) {
         service.remover(id);
@@ -60,6 +94,14 @@ public class ServicoOpcionalController {
     }
 
     @Operation(summary = "Busca um Serviço Opcional por Id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Serviço Opcional encontrado"),
+            @ApiResponse(responseCode = "201", description = "Serviço Opcional adicionado"),
+            @ApiResponse(responseCode = "400", description = "Erro na requisição"),
+            @ApiResponse(responseCode = "404", description = "Serviço Opcional não encontrado"),
+            @ApiResponse(responseCode = "422", description = "Erro de validação"),
+            @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
+    })
     @GetMapping("/{id}")
     public ResponseEntity<ServicoOpcionalDTO> buscarPorId(@PathVariable Long id) {
         ServicoOpcional servico = service.buscarPorId(id);
